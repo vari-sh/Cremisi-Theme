@@ -713,8 +713,7 @@
         "meta.link"
       ],
       "settings": {
-        "foreground": "#2d5c9c",
-        "fontStyle": "underline"
+        "foreground": "#2d5c9c"
       }
     },
     {

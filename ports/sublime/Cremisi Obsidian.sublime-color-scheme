@@ -228,7 +228,6 @@
       "scope": "markup.italic"
     },
     {
-      "font_style": "underline",
       "foreground": "var(lapis)",
       "name": "Markdown links",
       "scope": "markup.underline.link, meta.link"

@@ -8,15 +8,15 @@ Works in VS Code, VSCodium and other editors built on it.
 From a packaged extension:
 
 ```sh
-npx @vscode/vsce package          # in this folder: builds cremisi-theme-0.1.0.vsix
-code --install-extension cremisi-theme-0.1.0.vsix
+npx @vscode/vsce package          # in this folder: builds cremisi-theme-0.1.1.vsix
+code --install-extension cremisi-theme-0.1.1.vsix
 ```
 
 Or link the folder into your extensions directory and reload the window
 (`~/.vscode/extensions`, or `~/.vscode-oss/extensions` for VSCodium):
 
 ```sh
-ln -s "$PWD" ~/.vscode/extensions/vari-sh.cremisi-theme-0.1.0
+ln -s "$PWD" ~/.vscode/extensions/vari-sh.cremisi-theme-0.1.1
 ```
 
 Then run **Preferences: Color Theme** and pick *Cremisi Obsidian* or *Cremisi Ivory*.
