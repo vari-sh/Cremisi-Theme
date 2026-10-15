@@ -44,12 +44,12 @@ Contrast is measured against each variant's ground; `*` marks comments, exempt f
 | Lapis | `lapis` | `#6886bb` | `#2d5c9c` | Functions, JSON and YAML keys | 4.86 / 5.82 |
 | Tallow | `tallow` | `#dccb9a` | `#7e6410` | Types, classes, namespaces, attributes | 11.10 / 4.89 |
 | Amber | `amber` | `#cf9142` | `#9f5c12` | Numbers, constants | 6.62 / 4.53 |
+| Sealing wax | `sealwax` | `#c6784c` | `#a24d20` | Decorators, annotations, escapes, placeholders, regex | 5.27 / 5.02 |
 | Malachite | `malachite` | `#44a078` | `#2f7a4e` | Strings | 5.57 / 4.53 |
 | Verdigris | `verdigris` | `#6bb3b0` | `#1a706d` | Properties, members | 7.40 / 5.07 |
 | Amethyst | `amethyst` | `#9c7bb0` | `#7e3a9e` | Builtins, self, YAML anchors | 5.00 / 6.09 |
 | Wine | `wine` | `#b27a90` | `#8a3f64` | Operators, imports, key-value colons | 5.17 / 6.11 |
 | Withered petal | `petal` | `#c58f96` | `#a8465f` | Parameters | 6.59 / 4.90 |
-| Sealing wax | `sealwax` | `#c6784c` | `#a24d20` | Decorators, annotations, escapes, placeholders, regex | 5.27 / 5.02 |
 
 Interface variables: `border` `#302f35` / `#e9e1d1`, `gutter_fg` `#4e4a50` / `#b3aa9a`.
 
