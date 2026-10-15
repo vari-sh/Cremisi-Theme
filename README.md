@@ -64,36 +64,20 @@ The shape of the letter tells you the role before the colour does.
 | ***Bold italic*** | booleans |
 | Regular | strings, numbers, operators, punctuation, variables, keys, properties |
 
-## Install
+## Ports
 
-### Sublime Text
-
-1. Copy both files from [`sublime/`](sublime) into your `Packages/User` folder (*Preferences → Browse Packages…*).
-2. Run **UI: Select Color Scheme** from the command palette and pick *Cremisi Obsidian* or *Cremisi Ivory*.
-
-### Hugo
-
-1. Enable Chroma classes in `hugo.toml`:
-   ```toml
-   [markup.highlight]
-     noClasses = false
-   ```
-2. Include [`hugo/cremisi-syntax.css`](hugo/cremisi-syntax.css) in your theme.
-3. Set `data-theme="obsidian"` or `data-theme="ivory"` on the `<html>` element.
-
-### fish
-
-1. Copy the files from [`fish/`](fish) into `~/.config/fish/themes/`.
-2. Run `fish_config theme choose cremisi-obsidian` (or `cremisi-ivory`).
-
-Each theme carries a `[light]` (Ivory) and a `[dark]` (Obsidian) section, so fish follows the terminal background;
-the two files differ only in the variant used when the background cannot be detected.
+| Port | Files | |
+|---|---|---|
+| [Sublime Text](ports/sublime) | `Cremisi Obsidian.sublime-color-scheme`, `Cremisi Ivory.sublime-color-scheme` | [install](ports/sublime#install) |
+| [Hugo (Chroma)](ports/hugo) | `cremisi-syntax.css` | [install](ports/hugo#install) |
+| [fish](ports/fish) | `cremisi-obsidian.theme`, `cremisi-ivory.theme` | [install](ports/fish#install) |
+| [CSS scales](ports/css) | `cremisi-scales.css` | [usage](ports/css#usage) |
 
 ## Two scales
 
 Eleven steps of **stone** and eleven of **blood**, interpolated in OKLCH, for building interfaces on top of Cremisi.
 Structure and identity, and nothing else, on purpose: syntax highlighting stays with the materials.
-They ship as custom properties in [`css/cremisi-scales.css`](css/cremisi-scales.css) (`--cremisi-stone-*`, `--cremisi-blood-*`).
+They ship as custom properties in [`ports/css/cremisi-scales.css`](ports/css/cremisi-scales.css) (`--cremisi-stone-*`, `--cremisi-blood-*`).
 
 | Step | Stone | | Blood | |
 |---|---|---|---|---|
@@ -118,14 +102,11 @@ for badges and alerts on Ivory, 900–950 thicken into clotted blood, for error 
 
 ```
 palette.yaml   the palette: materials, interface variables, Sublime globals and rules, scales
-sublime/       Cremisi Obsidian / Ivory .sublime-color-scheme
-hugo/          cremisi-syntax.css, Chroma classes for both variants
-fish/          cremisi-obsidian / cremisi-ivory .theme
-css/           cremisi-scales.css
+ports/         one folder per port, each with its own README
 assets/        previews
 ```
 
-Every file is generated from `palette.yaml`; the live page at [vari.sh/cremisi](https://vari.sh/cremisi/) is built from the same data.
+Every port is generated from `palette.yaml`; the live page at [vari.sh/cremisi](https://vari.sh/cremisi/) is built from the same data.
 
 ## License
 
