@@ -1,0 +1,89 @@
+# name: 'Cremisi Obsidian'
+# url: 'https://vari.sh/cremisi/'
+
+[light]
+# preferred_background: f4eee2
+fish_color_normal 2b2733
+fish_color_command 2d5c9c
+fish_color_param a8465f
+fish_color_keyword bb1f39
+fish_color_quote 2f7a4e
+fish_color_redirection 8a3f64
+fish_color_end 9f5c12
+fish_color_comment 8a7f8c
+fish_color_error c42740 --underline
+fish_color_gray 64606c
+fish_color_selection --background=e8bebb
+fish_color_search_match --background=e8bebb
+fish_color_option 7e6410
+fish_color_operator 8a3f64
+fish_color_escape a24d20
+fish_color_autosuggestion 64606c
+fish_color_cancel c42740
+fish_color_cwd 9f5c12
+fish_color_user 1a706d
+fish_color_host 2d5c9c
+fish_color_host_remote 2f7a4e
+fish_color_status bb1f39
+fish_pager_color_progress 64606c
+fish_pager_color_prefix bb1f39
+fish_pager_color_completion 2b2733
+fish_pager_color_description 64606c
+
+[dark]
+# preferred_background: 17171c
+fish_color_normal e9e1d1
+fish_color_command 6886bb
+fish_color_param c58f96
+fish_color_keyword e2586a
+fish_color_quote 44a078
+fish_color_redirection b27a90
+fish_color_end cf9142
+fish_color_comment 9e8d99
+fish_color_error c42740 --underline
+fish_color_gray 9a948c
+fish_color_selection --background=411b25
+fish_color_search_match --background=411b25
+fish_color_option dccb9a
+fish_color_operator b27a90
+fish_color_escape c6784c
+fish_color_autosuggestion 9a948c
+fish_color_cancel c42740
+fish_color_cwd cf9142
+fish_color_user 6bb3b0
+fish_color_host 6886bb
+fish_color_host_remote 44a078
+fish_color_status e2586a
+fish_pager_color_progress 9a948c
+fish_pager_color_prefix e2586a
+fish_pager_color_completion e9e1d1
+fish_pager_color_description 9a948c
+
+[unknown]
+# preferred_background: 17171c
+fish_color_normal e9e1d1
+fish_color_command 6886bb
+fish_color_param c58f96
+fish_color_keyword e2586a
+fish_color_quote 44a078
+fish_color_redirection b27a90
+fish_color_end cf9142
+fish_color_comment 9e8d99
+fish_color_error c42740 --underline
+fish_color_gray 9a948c
+fish_color_selection --background=411b25
+fish_color_search_match --background=411b25
+fish_color_option dccb9a
+fish_color_operator b27a90
+fish_color_escape c6784c
+fish_color_autosuggestion 9a948c
+fish_color_cancel c42740
+fish_color_cwd cf9142
+fish_color_user 6bb3b0
+fish_color_host 6886bb
+fish_color_host_remote 44a078
+fish_color_status e2586a
+fish_pager_color_progress 9a948c
+fish_pager_color_prefix e2586a
+fish_pager_color_completion e9e1d1
+fish_pager_color_description 9a948c

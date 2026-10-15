@@ -1,0 +1,315 @@
+{
+  "author": "vari.sh",
+  "globals": {
+    "accent": "var(crimson)",
+    "active_guide": "color(var(ink) alpha(0.16))",
+    "background": "var(ground)",
+    "bracket_contents_foreground": "var(blood)",
+    "brackets_foreground": "var(blood)",
+    "caret": "var(blood)",
+    "find_highlight": "var(amber)",
+    "find_highlight_foreground": "var(ground)",
+    "foreground": "var(ink)",
+    "guide": "color(var(ink) alpha(0.06))",
+    "gutter": "var(ground)",
+    "gutter_foreground": "var(gutter_fg)",
+    "gutter_foreground_highlight": "var(blood)",
+    "highlight": "var(blood)",
+    "inactive_selection": "color(var(crimson) alpha(0.12))",
+    "invisibles": "color(var(ink) alpha(0.10))",
+    "line_diff_added": "var(malachite)",
+    "line_diff_deleted": "var(blood)",
+    "line_diff_modified": "var(amber)",
+    "line_highlight": "color(var(ink) alpha(0.05))",
+    "minimap_border": "var(border)",
+    "selection": "color(var(crimson) alpha(0.24))",
+    "selection_border": "var(crimson_deep)",
+    "shadow": "color(var(ground) alpha(0.6))",
+    "stack_guide": "color(var(ink) alpha(0.10))",
+    "tags_foreground": "var(blood)"
+  },
+  "name": "Cremisi Obsidian",
+  "rules": [
+    {
+      "font_style": "italic",
+      "foreground": "var(incense)",
+      "name": "Comments",
+      "scope": "comment, punctuation.definition.comment"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(blood)",
+      "name": "Keywords and declarations",
+      "scope": "keyword, storage.modifier, storage.type.function, storage.type.class"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(blood)",
+      "name": "Control flow",
+      "scope": "keyword.control"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(wine)",
+      "name": "Imports",
+      "scope": "keyword.control.import, keyword.control.at-rule, keyword.other.import, meta.preprocessor"
+    },
+    {
+      "foreground": "var(wine)",
+      "name": "Operators",
+      "scope": "keyword.operator, punctuation.accessor"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(lapis)",
+      "name": "Functions",
+      "scope": "entity.name.function, variable.function, support.function, meta.function-call"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(amethyst)",
+      "name": "Builtins and self",
+      "scope": "support.function.builtin, variable.language"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(tallow)",
+      "name": "Types",
+      "scope": "storage.type, support.type, entity.name.type"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(tallow)",
+      "name": "Classes and namespaces",
+      "scope": "entity.name.class, entity.name.struct, entity.name.namespace, support.class, entity.other.inherited-class"
+    },
+    {
+      "foreground": "var(malachite)",
+      "name": "Strings",
+      "scope": "string, string.quoted, string.unquoted"
+    },
+    {
+      "foreground": "var(sealwax)",
+      "name": "Escapes and regex",
+      "scope": "constant.character.escape, constant.other.placeholder, string.regexp"
+    },
+    {
+      "foreground": "var(amber)",
+      "name": "Numbers",
+      "scope": "constant.numeric"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(amber)",
+      "name": "Language constants",
+      "scope": "constant.language"
+    },
+    {
+      "font_style": "bold italic",
+      "foreground": "var(blood)",
+      "name": "Booleans",
+      "scope": "constant.language.boolean"
+    },
+    {
+      "foreground": "var(amber)",
+      "name": "Other constants",
+      "scope": "constant.other, variable.other.constant"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(petal)",
+      "name": "Parameters",
+      "scope": "variable.parameter"
+    },
+    {
+      "foreground": "var(ink)",
+      "name": "Variables",
+      "scope": "variable, variable.other"
+    },
+    {
+      "foreground": "var(verdigris)",
+      "name": "Properties",
+      "scope": "variable.other.member, variable.other.property"
+    },
+    {
+      "foreground": "var(sealwax)",
+      "name": "Decorators",
+      "scope": "entity.name.decorator, meta.decorator, meta.annotation, punctuation.definition.annotation"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(tallow)",
+      "name": "Attributes",
+      "scope": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "var(blood)",
+      "name": "Tags",
+      "scope": "entity.name.tag"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(blood)",
+      "name": "Exceptions",
+      "scope": "support.type.exception, support.class.exception"
+    },
+    {
+      "foreground": "var(iron)",
+      "name": "Punctuation",
+      "scope": "punctuation"
+    },
+    {
+      "background": "var(crimson)",
+      "foreground": "#ffffff",
+      "name": "Invalid",
+      "scope": "invalid, invalid.illegal"
+    },
+    {
+      "foreground": "var(blood)",
+      "name": "Diff deleted",
+      "scope": "markup.deleted"
+    },
+    {
+      "foreground": "var(malachite)",
+      "name": "Diff inserted",
+      "scope": "markup.inserted"
+    },
+    {
+      "foreground": "var(amber)",
+      "name": "Diff changed",
+      "scope": "markup.changed"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(blood)",
+      "name": "Markdown h1",
+      "scope": "markup.heading.1"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(amber)",
+      "name": "Markdown h2",
+      "scope": "markup.heading.2"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(tallow)",
+      "name": "Markdown h3",
+      "scope": "markup.heading.3"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(malachite)",
+      "name": "Markdown h4",
+      "scope": "markup.heading.4"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(lapis)",
+      "name": "Markdown h5",
+      "scope": "markup.heading.5"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(wine)",
+      "name": "Markdown h6",
+      "scope": "markup.heading.6"
+    },
+    {
+      "font_style": "bold",
+      "foreground": "var(tallow)",
+      "name": "Markdown bold",
+      "scope": "markup.bold"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(petal)",
+      "name": "Markdown italic",
+      "scope": "markup.italic"
+    },
+    {
+      "font_style": "underline",
+      "foreground": "var(lapis)",
+      "name": "Markdown links",
+      "scope": "markup.underline.link, meta.link"
+    },
+    {
+      "foreground": "var(malachite)",
+      "name": "Markdown raw",
+      "scope": "markup.raw"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(incense)",
+      "name": "Markdown quotes",
+      "scope": "markup.quote"
+    },
+    {
+      "foreground": "var(blood)",
+      "name": "Markdown lists and heading marks",
+      "scope": "markup.list punctuation.definition.list_item, punctuation.definition.heading"
+    },
+    {
+      "foreground": "var(lapis)",
+      "name": "Mapping keys",
+      "scope": "meta.mapping.key string, meta.mapping.key string.quoted, meta.mapping.key string.unquoted"
+    },
+    {
+      "foreground": "var(wine)",
+      "name": "Key-value separators",
+      "scope": "punctuation.separator.key-value, punctuation.separator.mapping.key-value"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(amber)",
+      "name": "JSON constants",
+      "scope": "constant.language.json"
+    },
+    {
+      "foreground": "var(lapis)",
+      "name": "YAML keys",
+      "scope": "meta.mapping.key.yaml string, meta.mapping.key.yaml string.quoted, meta.mapping.key.yaml string.unquoted, entity.name.tag.yaml"
+    },
+    {
+      "foreground": "var(amethyst)",
+      "name": "YAML anchors and aliases",
+      "scope": "entity.name.other.anchor.yaml, variable.other.alias.yaml, punctuation.definition.anchor.yaml, punctuation.definition.alias.yaml"
+    },
+    {
+      "foreground": "var(wine)",
+      "name": "YAML directives and tags",
+      "scope": "meta.directive.yaml, keyword.other.directive.yaml, storage.type.tag-handle.yaml"
+    },
+    {
+      "foreground": "var(malachite)",
+      "name": "YAML block strings",
+      "scope": "string.unquoted.block.yaml"
+    },
+    {
+      "font_style": "italic",
+      "foreground": "var(amber)",
+      "name": "YAML constants",
+      "scope": "constant.language.yaml, constant.language.boolean.yaml, constant.language.null.yaml"
+    }
+  ],
+  "variables": {
+    "amber": "#cf9142",
+    "amethyst": "#9c7bb0",
+    "blood": "#e2586a",
+    "border": "#302f35",
+    "crimson": "#c42740",
+    "crimson_deep": "#7e1023",
+    "ground": "#17171c",
+    "gutter_fg": "#4e4a50",
+    "incense": "#9e8d99",
+    "ink": "#e9e1d1",
+    "iron": "#9a948c",
+    "lapis": "#6886bb",
+    "malachite": "#44a078",
+    "petal": "#c58f96",
+    "sealwax": "#c6784c",
+    "tallow": "#dccb9a",
+    "verdigris": "#6bb3b0",
+    "wine": "#b27a90"
+  }
+}

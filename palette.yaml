@@ -1,0 +1,252 @@
+# Cremisi palette: every file in this repository is generated from these values.
+# obsidian = dark variant, ivory = light variant.
+
+materials:
+  - key: ground
+    en: Crypt stone
+    obsidian: "#17171c"
+    ivory: "#f4eee2"
+    role: Background
+    story: The cold slab on which everything rests.
+  - key: ink
+    en: Bone / ink
+    obsidian: "#e9e1d1"
+    ivory: "#2b2733"
+    role: Text, variables
+    story: Polished bone, scriptorium ink.
+    token: true
+  - key: iron
+    en: Wrought iron
+    obsidian: "#9a948c"
+    ivory: "#64606c"
+    role: Punctuation
+    story: The grilles that divide, the nails that hold.
+    token: true
+  - key: incense
+    en: Incense
+    obsidian: "#9e8d99"
+    ivory: "#8a7f8c"
+    role: Comments
+    story: Smoke that rises and fades between the lines.
+    exempt: true
+  - key: crimson
+    en: Crimson
+    obsidian: "#c42740"
+    ivory: "#c42740"
+    role: Accent, caret, selection
+    story: The heart of the reliquary, identical in both variants.
+  - key: crimson_deep
+    en: Crimson deep
+    obsidian: "#7e1023"
+    ivory: "#7e1023"
+    role: Selection border
+    story: Blood clotted at the edges of the selection.
+  - key: blood
+    en: Blood
+    obsidian: "#e2586a"
+    ivory: "#bb1f39"
+    role: Keywords, control flow, booleans, tags, exceptions
+    story: The word that commands.
+    token: true
+  - key: lapis
+    en: Lapis
+    obsidian: "#6886bb"
+    ivory: "#2d5c9c"
+    role: Functions, JSON and YAML keys
+    story: The deep cold note, ground for missals.
+    token: true
+  - key: tallow
+    en: Tallow
+    obsidian: "#dccb9a"
+    ivory: "#7e6410"
+    role: Types, classes, namespaces, attributes
+    story: Candle wax for the names that endure.
+    token: true
+  - key: amber
+    en: Amber
+    obsidian: "#cf9142"
+    ivory: "#9f5c12"
+    role: Numbers, constants
+    story: Ancient resin that traps the numbers.
+    token: true
+  - key: malachite
+    en: Malachite
+    obsidian: "#44a078"
+    ivory: "#2f7a4e"
+    role: Strings
+    story: Green stone for quoted words.
+    token: true
+  - key: verdigris
+    en: Verdigris
+    obsidian: "#6bb3b0"
+    ivory: "#1a706d"
+    role: Properties, members
+    story: The cold patina that ages on church doors.
+    token: true
+  - key: amethyst
+    en: Amethyst
+    obsidian: "#9c7bb0"
+    ivory: "#7e3a9e"
+    role: Builtins, self, YAML anchors
+    story: A bishop's gem for what is born with the language.
+    token: true
+  - key: wine
+    en: Wine
+    obsidian: "#b27a90"
+    ivory: "#8a3f64"
+    role: Operators, imports, key-value colons
+    story: The chalice of operators.
+    token: true
+  - key: petal
+    en: Withered petal
+    obsidian: "#c58f96"
+    ivory: "#a8465f"
+    role: Parameters
+    story: Dried petals pressed between the pages.
+    token: true
+  - key: sealwax
+    en: Sealing wax
+    obsidian: "#c6784c"
+    ivory: "#a24d20"
+    role: Decorators, annotations, escapes, placeholders, regex
+    story: The seal pressed upon decorators, and on the escapes set inside strings.
+    token: true
+
+ui_vars:
+  - key: border
+    obsidian: "#302f35"
+    ivory: "#e9e1d1"
+  - key: gutter_fg
+    obsidian: "#4e4a50"
+    ivory: "#b3aa9a"
+
+globals:
+  - [background, "var(ground)"]
+  - [foreground, "var(ink)"]
+  - [caret, "var(blood)"]
+  - [line_highlight, "color(var(ink) alpha(0.05))"]
+  - [selection, "color(var(crimson) alpha(0.24))"]
+  - [selection_border, "var(crimson_deep)"]
+  - [inactive_selection, "color(var(crimson) alpha(0.12))"]
+  - [gutter, "var(ground)"]
+  - [gutter_foreground, "var(gutter_fg)"]
+  - [gutter_foreground_highlight, "var(blood)"]
+  - [highlight, "var(blood)"]
+  - [find_highlight, "var(amber)"]
+  - [find_highlight_foreground, "var(ground)"]
+  - [invisibles, "color(var(ink) alpha(0.10))"]
+  - [guide, "color(var(ink) alpha(0.06))"]
+  - [active_guide, "color(var(ink) alpha(0.16))"]
+  - [stack_guide, "color(var(ink) alpha(0.10))"]
+  - [brackets_foreground, "var(blood)"]
+  - [bracket_contents_foreground, "var(blood)"]
+  - [tags_foreground, "var(blood)"]
+  - [accent, "var(crimson)"]
+  - [line_diff_added, "var(malachite)"]
+  - [line_diff_modified, "var(amber)"]
+  - [line_diff_deleted, "var(blood)"]
+  - [minimap_border, "var(border)"]
+  - [shadow, "color(var(ground) alpha(0.6))"]
+
+rules:
+  - { name: Comments, scope: "comment, punctuation.definition.comment", fg: incense, style: italic }
+  - { name: Keywords and declarations, scope: "keyword, storage.modifier, storage.type.function, storage.type.class", fg: blood, style: italic }
+  - { name: Control flow, scope: "keyword.control", fg: blood, style: bold }
+  - { name: Imports, scope: "keyword.control.import, keyword.control.at-rule, keyword.other.import, meta.preprocessor", fg: wine, style: italic }
+  - { name: Operators, scope: "keyword.operator, punctuation.accessor", fg: wine }
+  - { name: Functions, scope: "entity.name.function, variable.function, support.function, meta.function-call", fg: lapis, style: italic }
+  - { name: Builtins and self, scope: "support.function.builtin, variable.language", fg: amethyst, style: italic }
+  - { name: Types, scope: "storage.type, support.type, entity.name.type", fg: tallow, style: italic }
+  - { name: Classes and namespaces, scope: "entity.name.class, entity.name.struct, entity.name.namespace, support.class, entity.other.inherited-class", fg: tallow, style: italic }
+  - { name: Strings, scope: "string, string.quoted, string.unquoted", fg: malachite }
+  - { name: Escapes and regex, scope: "constant.character.escape, constant.other.placeholder, string.regexp", fg: sealwax }
+  - { name: Numbers, scope: "constant.numeric", fg: amber }
+  - { name: Language constants, scope: "constant.language", fg: amber, style: italic }
+  - { name: Booleans, scope: "constant.language.boolean", fg: blood, style: bold italic }
+  - { name: Other constants, scope: "constant.other, variable.other.constant", fg: amber }
+  - { name: Parameters, scope: "variable.parameter", fg: petal, style: italic }
+  - { name: Variables, scope: "variable, variable.other", fg: ink }
+  - { name: Properties, scope: "variable.other.member, variable.other.property", fg: verdigris }
+  - { name: Decorators, scope: "entity.name.decorator, meta.decorator, meta.annotation, punctuation.definition.annotation", fg: sealwax }
+  - { name: Attributes, scope: "entity.other.attribute-name", fg: tallow, style: italic }
+  - { name: Tags, scope: "entity.name.tag", fg: blood }
+  - { name: Exceptions, scope: "support.type.exception, support.class.exception", fg: blood, style: italic }
+  - { name: Punctuation, scope: "punctuation", fg: iron }
+  - { name: Invalid, scope: "invalid, invalid.illegal", fg: "#ffffff", bg: crimson }
+  - { name: Diff deleted, scope: "markup.deleted", fg: blood }
+  - { name: Diff inserted, scope: "markup.inserted", fg: malachite }
+  - { name: Diff changed, scope: "markup.changed", fg: amber }
+  - { name: Markdown h1, scope: "markup.heading.1", fg: blood, style: bold }
+  - { name: Markdown h2, scope: "markup.heading.2", fg: amber, style: bold }
+  - { name: Markdown h3, scope: "markup.heading.3", fg: tallow, style: bold }
+  - { name: Markdown h4, scope: "markup.heading.4", fg: malachite, style: bold }
+  - { name: Markdown h5, scope: "markup.heading.5", fg: lapis, style: bold }
+  - { name: Markdown h6, scope: "markup.heading.6", fg: wine, style: bold }
+  - { name: Markdown bold, scope: "markup.bold", fg: tallow, style: bold }
+  - { name: Markdown italic, scope: "markup.italic", fg: petal, style: italic }
+  - { name: Markdown links, scope: "markup.underline.link, meta.link", fg: lapis, style: underline }
+  - { name: Markdown raw, scope: "markup.raw", fg: malachite }
+  - { name: Markdown quotes, scope: "markup.quote", fg: incense, style: italic }
+  - { name: Markdown lists and heading marks, scope: "markup.list punctuation.definition.list_item, punctuation.definition.heading", fg: blood }
+  - { name: Mapping keys, scope: "meta.mapping.key string, meta.mapping.key string.quoted, meta.mapping.key string.unquoted", fg: lapis }
+  - { name: Key-value separators, scope: "punctuation.separator.key-value, punctuation.separator.mapping.key-value", fg: wine }
+  - { name: JSON constants, scope: "constant.language.json", fg: amber, style: italic }
+  - { name: YAML keys, scope: "meta.mapping.key.yaml string, meta.mapping.key.yaml string.quoted, meta.mapping.key.yaml string.unquoted, entity.name.tag.yaml", fg: lapis }
+  - { name: YAML anchors and aliases, scope: "entity.name.other.anchor.yaml, variable.other.alias.yaml, punctuation.definition.anchor.yaml, punctuation.definition.alias.yaml", fg: amethyst }
+  - { name: YAML directives and tags, scope: "meta.directive.yaml, keyword.other.directive.yaml, storage.type.tag-handle.yaml", fg: wine }
+  - { name: YAML block strings, scope: "string.unquoted.block.yaml", fg: malachite }
+  - { name: YAML constants, scope: "constant.language.yaml, constant.language.boolean.yaml, constant.language.null.yaml", fg: amber, style: italic }
+
+# Tonal scales (OKLCH interpolation): for building interfaces on top of Cremisi, not for syntax.
+# h = OKLCH hue in degrees; is = the theme colour that step already is.
+scales:
+  - key: stone
+    name: Stone
+    role: Structure
+    text: "Not a neutral grey. The hue slides from warm bone at 85° to the violet stone of the crypt at 285°, crossing a faintly rosy grey on the way: the family of incense. Ivory and Obsidian are the same stone, read from opposite ends."
+    steps:
+      - { n: 50, hex: "#f4eee2", h: 85, is: Ivory ground }
+      - { n: 100, hex: "#e9e1d1", h: 85, is: "Obsidian ink, Ivory border" }
+      - { n: 200, hex: "#cfc6b8", h: 79 }
+      - { n: 300, hex: "#b3aa9a", h: 82, is: Ivory gutter }
+      - { n: 400, hex: "#9a948c", h: 75, is: Obsidian iron }
+      - { n: 500, hex: "#827a76", h: 49 }
+      - { n: 600, hex: "#696164", h: 353 }
+      - { n: 700, hex: "#4e4a50", h: 315, is: Obsidian gutter }
+      - { n: 800, hex: "#302f35", h: 293, is: Obsidian border }
+      - { n: 900, hex: "#17171c", h: 286, is: Obsidian ground }
+      - { n: 950, hex: "#0c0c10", h: 285 }
+  - key: blood
+    name: Blood
+    role: Identity
+    text: "Steps 400 to 800 are the reds the theme already speaks. Above them the scale opens toward the petal, for badges and alerts on Ivory; below, it thickens into clotted blood, for error and diff grounds on Obsidian."
+    steps:
+      - { n: 50, hex: "#feeff0", h: 13 }
+      - { n: 100, hex: "#ffddde", h: 16 }
+      - { n: 200, hex: "#febec1", h: 16 }
+      - { n: 300, hex: "#fa969f", h: 14 }
+      - { n: 400, hex: "#ef6f80", h: 14 }
+      - { n: 500, hex: "#e2586a", h: 16, is: blood }
+      - { n: 600, hex: "#c42740", h: 19, is: crimson }
+      - { n: 700, hex: "#a11730", h: 19 }
+      - { n: 800, hex: "#7e1023", h: 19, is: crimson deep }
+      - { n: 900, hex: "#52151f", h: 15 }
+      - { n: 950, hex: "#301419", h: 10 }
+
+# A recipe for interfaces built only from scale steps (role -> step, per variant).
+scale_ui:
+  - { key: ground, role: Ground, obsidian: stone-900, ivory: stone-50 }
+  - { key: sunken, role: Sidebar, obsidian: stone-950, ivory: stone-100 }
+  - { key: border, role: Borders, obsidian: stone-800, ivory: stone-200 }
+  - { key: field, role: Field border, obsidian: stone-700, ivory: stone-300 }
+  - { key: text, role: Text, obsidian: stone-100, ivory: stone-900 }
+  - { key: muted, role: Muted text, obsidian: stone-400, ivory: stone-600 }
+  - { key: accent, role: Accent, obsidian: blood-600, ivory: blood-600 }
+  - { key: on-accent, role: On accent, obsidian: stone-50, ivory: stone-50 }
+  - { key: link, role: Links, obsidian: blood-400, ivory: blood-700 }
+  - { key: focus, role: Focus ring, obsidian: blood-500, ivory: blood-500 }
+  - { key: badge-bg, role: Badge, obsidian: blood-900, ivory: blood-100 }
+  - { key: badge-fg, role: Badge text, obsidian: blood-200, ivory: blood-800 }
+  - { key: alert-bg, role: Alert, obsidian: blood-950, ivory: blood-50 }
+  - { key: alert-bd, role: Alert border, obsidian: blood-800, ivory: blood-200 }
+  - { key: alert-fg, role: Alert text, obsidian: blood-200, ivory: blood-800 }

@@ -1,0 +1,26 @@
+/* Cremisi tonal scales · stone for structure, blood for identity */
+:root {
+  --cremisi-stone-50: #f4eee2;
+  --cremisi-stone-100: #e9e1d1;
+  --cremisi-stone-200: #cfc6b8;
+  --cremisi-stone-300: #b3aa9a;
+  --cremisi-stone-400: #9a948c;
+  --cremisi-stone-500: #827a76;
+  --cremisi-stone-600: #696164;
+  --cremisi-stone-700: #4e4a50;
+  --cremisi-stone-800: #302f35;
+  --cremisi-stone-900: #17171c;
+  --cremisi-stone-950: #0c0c10;
+
+  --cremisi-blood-50: #feeff0;
+  --cremisi-blood-100: #ffddde;
+  --cremisi-blood-200: #febec1;
+  --cremisi-blood-300: #fa969f;
+  --cremisi-blood-400: #ef6f80;
+  --cremisi-blood-500: #e2586a;
+  --cremisi-blood-600: #c42740;
+  --cremisi-blood-700: #a11730;
+  --cremisi-blood-800: #7e1023;
+  --cremisi-blood-900: #52151f;
+  --cremisi-blood-950: #301419;
+}

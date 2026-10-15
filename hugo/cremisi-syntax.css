@@ -1,0 +1,90 @@
+/* Cremisi — Chroma highlighting for Hugo. Obsidian / Ivory, by vari.sh */
+:root,
+[data-theme="obsidian"],
+[data-variant="obsidian"] {
+  --syn-ground: #17171c;
+  --syn-ink: #e9e1d1;
+  --syn-iron: #9a948c;
+  --syn-incense: #9e8d99;
+  --syn-crimson: #c42740;
+  --syn-crimson-deep: #7e1023;
+  --syn-blood: #e2586a;
+  --syn-lapis: #6886bb;
+  --syn-tallow: #dccb9a;
+  --syn-amber: #cf9142;
+  --syn-malachite: #44a078;
+  --syn-verdigris: #6bb3b0;
+  --syn-amethyst: #9c7bb0;
+  --syn-wine: #b27a90;
+  --syn-petal: #c58f96;
+  --syn-sealwax: #c6784c;
+  --syn-border: #302f35;
+  --syn-gutter-fg: #4e4a50;
+}
+
+[data-theme="ivory"],
+[data-variant="ivory"] {
+  --syn-ground: #f4eee2;
+  --syn-ink: #2b2733;
+  --syn-iron: #64606c;
+  --syn-incense: #8a7f8c;
+  --syn-crimson: #c42740;
+  --syn-crimson-deep: #7e1023;
+  --syn-blood: #bb1f39;
+  --syn-lapis: #2d5c9c;
+  --syn-tallow: #7e6410;
+  --syn-amber: #9f5c12;
+  --syn-malachite: #2f7a4e;
+  --syn-verdigris: #1a706d;
+  --syn-amethyst: #7e3a9e;
+  --syn-wine: #8a3f64;
+  --syn-petal: #a8465f;
+  --syn-sealwax: #a24d20;
+  --syn-border: #e9e1d1;
+  --syn-gutter-fg: #b3aa9a;
+}
+
+.chroma { color: var(--syn-ink); background: transparent; }
+
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs { color: var(--syn-incense); font-style: italic; }
+.chroma .cp, .chroma .cpf { color: var(--syn-wine); font-style: italic; }
+
+.chroma .k, .chroma .kr, .chroma .kp { color: var(--syn-blood); font-weight: 500; }
+.chroma .kd { color: var(--syn-blood); font-style: italic; }
+.chroma .kn { color: var(--syn-wine); font-style: italic; }
+.chroma .kc { color: var(--syn-blood); font-weight: 500; font-style: italic; }
+.chroma .kt { color: var(--syn-tallow); font-style: italic; }
+
+.chroma .nc, .chroma .nn, .chroma .na { color: var(--syn-tallow); font-style: italic; }
+.chroma .nf, .chroma .fm { color: var(--syn-lapis); font-style: italic; }
+.chroma .nb, .chroma .bp { color: var(--syn-amethyst); font-style: italic; }
+.chroma .nd { color: var(--syn-sealwax); }
+.chroma .ne { color: var(--syn-blood); font-style: italic; }
+.chroma .nt { color: var(--syn-blood); }
+.chroma .no { color: var(--syn-amber); }
+.chroma .py { color: var(--syn-verdigris); }
+/* Chroma tags YAML and JSON keys as .nt, like HTML tags: keys belong to lapis */
+[data-lang="yaml" i] .chroma .nt, .chroma [data-lang="yaml" i] .nt,
+[data-lang="json" i] .chroma .nt, .chroma [data-lang="json" i] .nt { color: var(--syn-lapis); }
+/* ...and plain YAML scalars as .l: they are unquoted strings */
+[data-lang="yaml" i] .chroma .l, .chroma [data-lang="yaml" i] .l { color: var(--syn-malachite); }
+/* ...and YAML anchors and aliases as .cp: they belong to amethyst */
+[data-lang="yaml" i] .chroma .cp, .chroma [data-lang="yaml" i] .cp { color: var(--syn-amethyst); font-style: normal; }
+.chroma .n, .chroma .nx, .chroma .nl, .chroma .ni, .chroma .nv,
+.chroma .vc, .chroma .vg, .chroma .vi, .chroma .vm { color: var(--syn-ink); }
+
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd,
+.chroma .s2, .chroma .sh, .chroma .sx, .chroma .s1, .chroma .ss { color: var(--syn-malachite); }
+.chroma .se, .chroma .sr, .chroma .si { color: var(--syn-sealwax); }
+
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: var(--syn-amber); }
+
+.chroma .o, .chroma .ow { color: var(--syn-wine); }
+.chroma .p { color: var(--syn-iron); }
+.chroma .err { color: var(--syn-blood); }
+
+.chroma .gd { color: var(--syn-blood); }
+.chroma .gi { color: var(--syn-malachite); }
+.chroma .gh, .chroma .gu { color: var(--syn-blood); font-weight: 700; }
+.chroma .ge { color: var(--syn-petal); font-style: italic; }
+.chroma .gs { color: var(--syn-tallow); font-weight: 700; }
