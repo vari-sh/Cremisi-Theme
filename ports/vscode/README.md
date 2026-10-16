@@ -5,9 +5,9 @@ and **Cremisi Ivory**, pale as a page of vellum. Every colour is born from an ob
 for keywords, lapis for functions, malachite for strings, amber for numbers, tallow for types.
 Crimson is the only accent of the workbench, the rest is stone.
 
-![Cremisi Obsidian](https://vari-sh.github.io/cremisi/vscode/preview-obsidian.png)
+![Cremisi Obsidian](https://raw.githubusercontent.com/vari-sh/Cremisi-Theme/main/assets/vscode-obsidian.png)
 
-![Cremisi Ivory](https://vari-sh.github.io/cremisi/vscode/preview-ivory.png)
+![Cremisi Ivory](https://raw.githubusercontent.com/vari-sh/Cremisi-Theme/main/assets/vscode-ivory.png)
 
 The materials, the two tonal scales and the reasons behind each choice are on the page of the
 theme: [vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/).
