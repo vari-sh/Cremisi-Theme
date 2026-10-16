@@ -12,6 +12,18 @@ Crimson is the only accent of the workbench, the rest is stone.
 The materials, the two tonal scales and the reasons behind each choice are on the page of the
 theme: [vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/).
 
+## Install
+
+From the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vari-sh.cremisi-theme): search for *Cremisi* in the Extensions view,
+or press `Ctrl+P` and run:
+
+```
+ext install vari-sh.cremisi-theme
+```
+
+For VSCodium or an offline machine, download the `.vsix` from the
+[page of the theme](https://vari-sh.github.io/cremisi/#install) and run **Extensions: Install from VSIX…**.
+
 ## Use
 
 Run **Preferences: Color Theme** and pick *Cremisi Obsidian* or *Cremisi Ivory*.

@@ -10,6 +10,8 @@ Every colour is born from an object: blood, bone, stone, amber, verdigris.
 
 **[vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/)**
 
+For VS Code: **[Cremisi on the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vari-sh.cremisi-theme)**
+
 </div>
 
 <p align="center">
@@ -70,7 +72,7 @@ The shape of the letter tells you the role before the colour does.
 |---|---|---|
 | [Sublime Text](ports/sublime) | `Cremisi Obsidian.sublime-color-scheme`, `Cremisi Ivory.sublime-color-scheme` | [install](ports/sublime#install) |
 | [Hugo (Chroma)](ports/hugo) | `cremisi-syntax.css` | [install](ports/hugo#install) |
-| [VS Code](ports/vscode) | `Cremisi Obsidian`, `Cremisi Ivory` (extension) | [install](ports/vscode#install) |
+| [VS Code](ports/vscode) | `Cremisi Obsidian`, `Cremisi Ivory` (extension) | [Marketplace](https://marketplace.visualstudio.com/items?itemName=vari-sh.cremisi-theme) · [install](ports/vscode#install) |
 | [fish](ports/fish) | `cremisi-obsidian.theme`, `cremisi-ivory.theme` | [install](ports/fish#install) |
 | [CSS scales](ports/css) | `cremisi-scales.css` | [usage](ports/css#usage) |
 
