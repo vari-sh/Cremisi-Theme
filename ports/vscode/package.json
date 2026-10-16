@@ -2,7 +2,7 @@
   "name": "cremisi-theme",
   "displayName": "Cremisi",
   "description": "A gothic, arcane colour scheme in two variants, Obsidian and Ivory. Every colour is born from an object: blood, bone, stone, amber, verdigris.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "vari-sh",
   "author": "vari.sh",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "theme": "dark"
   },
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Themes"
@@ -28,11 +28,19 @@
   "keywords": [
     "theme",
     "color-theme",
+    "color-scheme",
     "dark",
     "light",
+    "dark-theme",
+    "light-theme",
     "gothic",
     "crimson",
-    "cremisi"
+    "red",
+    "warm",
+    "cremisi",
+    "obsidian",
+    "ivory",
+    "semantic-highlighting"
   ],
   "contributes": {
     "themes": [
@@ -47,5 +55,6 @@
         "path": "./themes/cremisi-ivory-color-theme.json"
       }
     ]
-  }
+  },
+  "pricing": "Free"
 }

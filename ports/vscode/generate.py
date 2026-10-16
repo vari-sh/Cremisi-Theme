@@ -18,13 +18,39 @@ PALETTE = yaml.safe_load((HERE.parent.parent / "palette.yaml").read_text())
 STYLES = {"italic": "italic", "bold": "bold", "bold italic": "bold italic", "underline": "underline"}
 JS_LANGS = ("javascript", "javascriptreact", "typescript", "typescriptreact")
 
+# Sublime selectors that VS Code's grammars give a different reach. meta.function-call
+# spans the arguments too in VS Code (C, Python), so only the generic call name stays.
+SCOPE_SWAP = {"meta.function-call": "meta.function-call.generic"}
+
 # Scopes that VS Code's own grammars name differently from Sublime Text's.
-# They come after the palette rules, so they win ties.
+# They come after the palette rules, so they win ties. Checked with vscode-textmate
+# against the grammars that ship with VS Code.
+JS_TS = ("js", "jsx", "ts", "tsx")
 VSCODE_RULES = [
-    ("JSON keys (VS Code)", "support.type.property-name.json, support.type.property-name.json punctuation", "lapis", None),
+    ("Declaration keywords (VS Code)", ", ".join(
+        ["storage.type.struct", "storage.type.enum", "storage.type.union", "storage.type.interface",
+         "storage.type.type", "storage.type.namespace", "storage.type.rust"]
+        + [f"storage.type.{x}" for x in JS_TS]), "blood", "italic"),
+    ("Preprocessor (VS Code)", "keyword.control.directive, meta.preprocessor punctuation.definition.directive", "wine", "italic"),
+    ("Macros (VS Code)", "entity.name.function.preprocessor, entity.name.function.macro", "wine", None),
+    ("JSON keys (VS Code)", "support.type.property-name.json", "lapis", None),
+    ("Object literal keys (VS Code)", "meta.object-literal.key", "lapis", None),
     ("JSON colons (VS Code)", "punctuation.separator.dictionary.key-value", "wine", None),
-    ("Python decorators (VS Code)", "entity.name.function.decorator, meta.function.decorator punctuation.decorator", "sealwax", None),
-    ("Format placeholders (VS Code)", "constant.character.format.placeholder", "sealwax", None),
+    ("YAML colons (VS Code)", "punctuation.separator.map", "wine", None),
+    ("YAML directives (VS Code)", "meta.directives.yaml punctuation.definition.directive", "wine", None),
+    ("YAML anchors and aliases (VS Code)", "keyword.control.flow.anchor.yaml, keyword.control.flow.alias.yaml, variable.other.anchor.yaml", "amethyst", None),
+    ("Decorators (VS Code)", "entity.name.function.decorator, punctuation.definition.decorator, meta.function.decorator support.type, meta.attribute.rust", "sealwax", None),
+    ("Format placeholders (VS Code)", "constant.character.format.placeholder, storage.type.format", "sealwax", None),
+    ("Regex internals (VS Code)", "string.regexp constant.other, string.regexp constant.character, string.regexp keyword.control, string.regexp keyword.operator, string.regexp keyword.other, string.regexp support.other", "sealwax", None),
+    ("Number prefixes and suffixes (VS Code)", "constant.numeric storage.type.number, keyword.other.unit", "amber", None),
+    ("Python self parameter (VS Code)", "variable.parameter.function.language.special.self", "amethyst", "italic"),
+    ("Properties (VS Code)", "meta.attribute.python, variable.object.property, variable.other.constant.property", "verdigris", None),
+    # Every JS/TS `const` binding is variable.other.constant: keep it plain ink, as Sublime does.
+    ("JS/TS const bindings (VS Code)", ", ".join(f"variable.other.constant.{x}" for x in JS_TS), "ink", None),
+    ("Markdown inline code (VS Code)", "markup.inline.raw", "malachite", None),
+    ("Markdown link text (VS Code)", "string.other.link", "lapis", None),
+    ("Markdown list marks (VS Code)", "punctuation.definition.list.begin.markdown", "blood", None),
+    ("Round braces (VS Code)", "meta.brace, storage.modifier.array.bracket", "iron", None),
 ]
 
 
@@ -43,43 +69,59 @@ def palette(variant):
 
 def token_colors(c):
     out = []
+    levels = {int(r["scope"][-1]): r for r in PALETTE["rules"] if r["scope"].startswith("markup.heading.")}
     for rule in PALETTE["rules"]:
         if rule.get("bg"):
-            # Token colours cannot set a background: mark invalid code as crimson and underlined.
-            settings = {"foreground": c["crimson"], "fontStyle": "underline"}
+            # Token colours cannot set a background: mark invalid code as blood and underlined
+            # (crimson alone is 3.16:1 on Obsidian).
+            settings = {"foreground": c["blood"], "fontStyle": "underline"}
         else:
-            settings = {"foreground": c[rule["fg"]]}
-            if rule.get("style"):
-                settings["fontStyle"] = STYLES[rule["style"]]
+            # An unset fontStyle inherits from a wider rule (keyword.operator would turn italic
+            # under keyword): every rule states its own, roman when none is given.
+            settings = {"foreground": c[rule["fg"]], "fontStyle": STYLES.get(rule.get("style"), "")}
         out.append({
             "name": rule["name"],
-            "scope": [s.strip() for s in rule["scope"].split(",")],
+            "scope": [SCOPE_SWAP.get(x.strip(), x.strip()) for x in rule["scope"].split(",")],
             "settings": settings,
         })
     for name, scope, fg, style in VSCODE_RULES:
-        settings = {"foreground": c[fg]}
-        if style:
-            settings["fontStyle"] = style
+        settings = {"foreground": c[fg], "fontStyle": style or ""}
         out.append({"name": name, "scope": [x.strip() for x in scope.split(",")], "settings": settings})
+    for n, rule in sorted(levels.items()):
+        out.append({
+            "name": f"Markdown h{n} (VS Code)",
+            "scope": [f"heading.{n}.markdown entity.name.section"],
+            "settings": {"foreground": c[rule["fg"]], "fontStyle": STYLES.get(rule.get("style"), "")},
+        })
     return out
 
 
 def semantic_token_colors(c):
+    def role(fg, style=""):
+        return {"foreground": c[fg], "fontStyle": style}
     s = {
-        "selfParameter": {"foreground": c["amethyst"], "fontStyle": "italic"},
-        "selfKeyword": {"foreground": c["amethyst"], "fontStyle": "italic"},
-        "function.defaultLibrary": {"foreground": c["amethyst"], "fontStyle": "italic"},
-        "decorator": {"foreground": c["sealwax"]},
-        "macro": {"foreground": c["sealwax"]},
-        "enumMember": {"foreground": c["amber"]},
-        "parameter": {"foreground": c["petal"], "fontStyle": "italic"},
-        "property": {"foreground": c["verdigris"]},
-        "variable.typeHint:python": {"foreground": c["tallow"], "fontStyle": "italic"},
+        "function": role("lapis", "italic"),
+        "method": role("lapis", "italic"),
+        "parameter": role("petal", "italic"),
+        "property": role("verdigris"),
+        "variable": role("ink"),
+        "variable.readonly": role("amber"),
+        "enumMember": role("amber"),
+        "decorator": role("sealwax"),
+        "macro": role("wine"),
+        "selfKeyword": role("amethyst", "italic"),
+        "selfParameter": role("amethyst", "italic"),
+        "*.defaultLibrary": role("amethyst", "italic"),
+        "variable.typeHint:python": role("tallow", "italic"),
     }
-    # `const` would otherwise map to variable.other.constant and paint every binding amber.
+    # Types keep tallow, builtin ones too: support.type is tallow in the token rules.
+    for kind in ("type", "class", "interface", "struct", "namespace", "enum", "typeParameter"):
+        s[kind] = role("tallow", "italic")
+        s[f"{kind}.defaultLibrary"] = role("tallow", "italic")
+    # `const` is readonly in JS and TS: amber would paint every binding, so they stay ink.
     for lang in JS_LANGS:
-        s[f"variable.readonly:{lang}"] = {"foreground": c["ink"]}
-        s[f"property.readonly:{lang}"] = {"foreground": c["verdigris"]}
+        s[f"variable.readonly:{lang}"] = role("ink")
+        s[f"property.readonly:{lang}"] = role("verdigris")
     return s
 
 
@@ -87,12 +129,13 @@ def workbench(c, dark):
     if dark:
         ground, deep, raised, border, field = c["stone-900"], c["stone-950"], c["stone-800"], c["stone-800"], c["stone-700"]
         text, muted, faint = c["stone-100"], c["stone-400"], c["stone-600"]
-        link, alert_bg, badge_bg, badge_fg = c["blood-400"], c["blood-950"], c["blood-900"], c["blood-200"]
+        link, alert_bg, removed_line, removed_text = c["blood-400"], c["blood-950"], c["blood-950"], c["blood-900"]
     else:
         ground, deep, raised, border, field = c["stone-50"], c["stone-100"], c["stone-100"], c["stone-200"], c["stone-300"]
         text, muted, faint = c["stone-900"], c["stone-600"], c["stone-400"]
-        link, alert_bg, badge_bg, badge_fg = c["blood-700"], c["blood-50"], c["blood-100"], c["blood-800"]
+        link, alert_bg, removed_line, removed_text = c["blood-700"], c["blood-50"], c["blood-50"], c["blood-100"]
 
+    # crimson is the only accent: focus, badges, cursor, active tab, primary buttons.
     accent, on_accent = c["blood-600"], c["stone-50"]
     selection = alpha(c["crimson"], 0.24)
     hover = alpha(c["ink"], 0.06)
@@ -120,7 +163,7 @@ def workbench(c, dark):
         # editor
         "editor.background": ground,
         "editor.foreground": c["ink"],
-        "editorCursor.foreground": c["blood"],
+        "editorCursor.foreground": accent,
         "editor.lineHighlightBackground": alpha(c["ink"], 0.05),
         "editor.lineHighlightBorder": "#00000000",
         "editor.selectionBackground": selection,
@@ -203,8 +246,10 @@ def workbench(c, dark):
         # diff
         "diffEditor.insertedTextBackground": alpha(c["malachite"], 0.15),
         "diffEditor.insertedLineBackground": alpha(c["malachite"], 0.08),
-        "diffEditor.removedTextBackground": alpha(c["blood"], 0.18),
-        "diffEditor.removedLineBackground": alpha(c["blood"], 0.08),
+        # Removed grounds are clotted blood on Obsidian, petal on Ivory; slightly
+        # translucent, as VS Code asks, so selections show through.
+        "diffEditor.removedTextBackground": alpha(removed_text, 0.85),
+        "diffEditor.removedLineBackground": alpha(removed_line, 0.85),
         "diffEditor.border": border,
 
         # tabs
@@ -249,10 +294,13 @@ def workbench(c, dark):
         "statusBarItem.hoverBackground": hover,
         "statusBarItem.remoteBackground": accent,
         "statusBarItem.remoteForeground": on_accent,
-        "statusBarItem.errorBackground": accent,
-        "statusBarItem.errorForeground": on_accent,
-        "statusBarItem.warningBackground": c["amber"],
-        "statusBarItem.warningForeground": deep if dark else c["stone-50"],
+        # The status bar stays sober: crimson only for debugging and remote.
+        "statusBarItem.errorBackground": deep,
+        "statusBarItem.errorForeground": c["blood"],
+        "statusBarItem.warningBackground": deep,
+        "statusBarItem.warningForeground": c["amber"],
+        "statusBarItem.prominentBackground": raised,
+        "statusBarItem.prominentHoverBackground": field,
         "panel.background": ground,
         "panel.border": border,
         "panelTitle.activeForeground": text,
@@ -295,6 +343,7 @@ def workbench(c, dark):
         "dropdown.background": deep,
         "dropdown.border": field,
         "dropdown.foreground": text,
+        "dropdown.listBackground": deep,
         "checkbox.background": ground,
         "checkbox.border": field,
         "checkbox.foreground": text,
@@ -304,8 +353,8 @@ def workbench(c, dark):
         "button.secondaryBackground": raised,
         "button.secondaryForeground": text,
         "button.secondaryHoverBackground": field,
-        "badge.background": badge_bg,
-        "badge.foreground": badge_fg,
+        "badge.background": accent,
+        "badge.foreground": on_accent,
         "progressBar.background": accent,
         "scrollbar.shadow": alpha("#000000", 0.3 if dark else 0.08),
         "scrollbarSlider.background": alpha(c["ink"], 0.12),
@@ -314,6 +363,9 @@ def workbench(c, dark):
         "quickInput.background": deep,
         "quickInput.foreground": text,
         "quickInputList.focusBackground": selection,
+        "quickInputList.focusForeground": text,
+        "pickerGroup.foreground": c["blood"],
+        "pickerGroup.border": border,
         "quickInputTitle.background": raised,
         "keybindingLabel.background": raised,
         "keybindingLabel.foreground": text,
@@ -332,6 +384,7 @@ def workbench(c, dark):
         "notificationsErrorIcon.foreground": c["blood"],
         "notificationsWarningIcon.foreground": c["amber"],
         "notificationsInfoIcon.foreground": c["lapis"],
+        "notificationLink.foreground": link,
         "peekView.border": accent,
         "peekViewEditor.background": deep,
         "peekViewEditor.matchHighlightBackground": alpha(c["amber"], 0.3),
@@ -346,6 +399,8 @@ def workbench(c, dark):
         "gitDecoration.addedResourceForeground": c["malachite"],
         "gitDecoration.modifiedResourceForeground": c["amber"],
         "gitDecoration.deletedResourceForeground": c["blood"],
+        "gitDecoration.stageModifiedResourceForeground": c["amber"],
+        "gitDecoration.stageDeletedResourceForeground": c["blood"],
         "gitDecoration.renamedResourceForeground": c["verdigris"],
         "gitDecoration.untrackedResourceForeground": c["malachite"],
         "gitDecoration.ignoredResourceForeground": faint,
@@ -357,7 +412,7 @@ def workbench(c, dark):
         "terminal.foreground": c["ink"],
         "terminal.border": border,
         "terminal.selectionBackground": selection,
-        "terminalCursor.foreground": c["blood"],
+        "terminalCursor.foreground": accent,
         "terminal.ansiRed": c["blood"],
         "terminal.ansiGreen": c["malachite"],
         "terminal.ansiYellow": c["amber"],
@@ -392,7 +447,7 @@ def workbench(c, dark):
         colors.update({
             "terminal.ansiBlack": c["stone-800"],
             "terminal.ansiWhite": c["stone-200"],
-            "terminal.ansiBrightBlack": c["stone-600"],
+            "terminal.ansiBrightBlack": c["stone-500"],  # stone-600 is 2.97:1, under 3:1
             "terminal.ansiBrightRed": c["blood-400"],
             "terminal.ansiBrightWhite": c["stone-50"],
         })

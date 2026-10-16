@@ -1,45 +1,46 @@
-# Cremisi for VS Code
+# Cremisi
 
-Both variants as a VS Code extension: **Cremisi Obsidian** (dark) and **Cremisi Ivory** (light).
-Works in VS Code, VSCodium and other editors built on it.
+A gothic, arcane colour scheme in two variants: **Cremisi Obsidian**, dark as crypt stone,
+and **Cremisi Ivory**, pale as a page of vellum. Every colour is born from an object: blood
+for keywords, lapis for functions, malachite for strings, amber for numbers, tallow for types.
+Crimson is the only accent of the workbench, the rest is stone.
 
-## Install
+![Cremisi Obsidian](https://vari-sh.github.io/cremisi/vscode/preview-obsidian.png)
 
-From a packaged extension:
+![Cremisi Ivory](https://vari-sh.github.io/cremisi/vscode/preview-ivory.png)
 
-```sh
-npx @vscode/vsce package          # in this folder: builds cremisi-theme-0.1.1.vsix
-code --install-extension cremisi-theme-0.1.1.vsix
-```
+The materials, the two tonal scales and the reasons behind each choice are on the page of the
+theme: [vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/).
 
-Or link the folder into your extensions directory and reload the window
-(`~/.vscode/extensions`, or `~/.vscode-oss/extensions` for VSCodium):
+## Use
 
-```sh
-ln -s "$PWD" ~/.vscode/extensions/vari-sh.cremisi-theme-0.1.1
-```
-
-Then run **Preferences: Color Theme** and pick *Cremisi Obsidian* or *Cremisi Ivory*.
+Run **Preferences: Color Theme** and pick *Cremisi Obsidian* or *Cremisi Ivory*.
 To follow the system appearance:
 
 ```json
-"window.autoDetectColorScheme": true,
-"workbench.preferredDarkColorTheme": "Cremisi Obsidian",
-"workbench.preferredLightColorTheme": "Cremisi Ivory"
+{
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Cremisi Obsidian",
+  "workbench.preferredLightColorTheme": "Cremisi Ivory"
+}
 ```
 
-## How it is built
+Every code token clears 4.5:1 against its own background; only comments, the smoke of incense,
+may fall below.
 
-`generate.py` writes both themes from [`palette.yaml`](../../palette.yaml):
+## Built, not drawn
+
+Both themes are generated from the same `palette.yaml` as the Sublime Text port and the page,
+so a change of palette reaches every editor at once:
 
 ```sh
-python3 ports/vscode/generate.py
+python3 ports/vscode/generate.py      # from the root of vari-sh/Cremisi-Theme
+npx @vscode/vsce package               # in ports/vscode
 ```
 
-- **Syntax** uses the same TextMate rules as the Sublime Text port, plus a few scopes that VS Code's grammars
-  name differently (JSON keys and colons, Python decorators, format placeholders). Semantic highlighting is on,
-  with `self`, builtins, decorators and parameters mapped to their materials, and `const` in JavaScript and
-  TypeScript kept as plain ink rather than constant amber.
-- **The workbench** is built from the stone and blood scales: stone for grounds, borders and text,
-  blood for the accent, badges and alerts, as in the `scale_ui` recipe.
-- **The terminal** maps the ANSI colours to the materials.
+- **Syntax** follows the Sublime Text rules, with the scopes that VS Code's grammars name
+  differently mapped onto the same roles. Semantic highlighting is on and speaks the same roles.
+- **The workbench** is built only from the stone and blood scales and the materials.
+- **The terminal** takes its sixteen colours from the materials.
+
+Source and other ports: [vari-sh/Cremisi-Theme](https://github.com/vari-sh/Cremisi-Theme). MIT licence.
