@@ -21,9 +21,6 @@ PALETTE = yaml.safe_load((HERE.parent.parent / "palette.yaml").read_text())
 SCOPE_SWAP = {
     # meta.function-call spans the arguments too (C, Python): call names are variable.function already.
     "meta.function-call": None,
-    # Python docstrings are comment.block.documentation: they read as strings.
-    "comment": "comment - comment.block.documentation.python",
-    "punctuation.definition.comment": "punctuation.definition.comment - comment.block.documentation.python",
     "keyword": "keyword - keyword.operator - source.regexp - string.regexp",
     "keyword.control": "keyword.control - keyword.control.import-export - source.regexp - string.regexp",
     # A decorator's arguments are plain code, as on the page.
@@ -44,7 +41,6 @@ SUBLIME_RULES = [
      f"variable.annotation, meta.annotation meta.generic-name{NOT_ARGS}, meta.annotation punctuation.accessor{NOT_ARGS}",
      "sealwax", None),
     ("Imports (Sublime)", "keyword.control.import-export, keyword.declaration.import", "wine", "italic"),
-    ("Python docstrings (Sublime)", "comment.block.documentation.python", "malachite", None),
     ("Member access (Sublime)", "meta.property.object, meta.path.rust meta.path.rust variable.other.rust", "verdigris", None),
     ("Imported modules (Sublime)", "meta.import-name, meta.statement.import meta.path meta.generic-name", "tallow", "italic"),
     ("Type declarations (Sublime)",
@@ -52,6 +48,8 @@ SUBLIME_RULES = [
      "tallow", "italic"),
     ("Type parameters (Sublime)", "variable.parameter.generic, variable.parameter.type", "tallow", "italic"),
     ("Constant declarations (Sublime)", "entity.name.constant", "amber", None),
+    # constant.language.boolean.true.json escapes the palette's JSON and YAML rules: values stay amber.
+    ("JSON and YAML values (Sublime)", "source.json constant.language, source.yaml constant.language", "amber", "italic"),
     ("Macros (Sublime)", "entity.name.constant.preprocessor, entity.name.macro, support.macro", "wine", None),
     ("Constructors (Sublime)", "entity.name.function.constructor.js", "blood", "italic"),
     ("Interpolations and format specs (Sublime)",

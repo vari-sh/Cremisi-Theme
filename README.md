@@ -25,7 +25,7 @@ Cremisi is a cabinet of materials: every hue comes from a real substance, desatu
 **Blood** is the protagonist, **bone** is the text, **stone** is the ground; everything else revolves around them.
 
 - **Crypt stone.** The dark ground is cold slate, the stone of a crypt; Ivory is the same stone read from its lightest end.
-- **Crimson rules.** Keywords, control flow, booleans and accents all speak with the voice of blood. Crimson `#c42740` is the only colour shared by both variants.
+- **Crimson rules.** Keywords, control flow, booleans, null and accents all speak with the voice of blood. Crimson `#c42740` is the only colour shared by both variants.
 - **Two cold notes.** Lapis blue for functions and keys, verdigris for properties. Every other hue is warm or mineral.
 - **Legible by rule.** Every code token clears WCAG AA (4.5:1) against its own background. Only comments, the smoke of incense, may fall below.
 
@@ -39,10 +39,10 @@ Contrast is measured against each variant's ground; `*` marks comments, exempt f
 | Crypt stone | `ground` | `#17171c` | `#f4eee2` | Background |  |
 | Bone / ink | `ink` | `#e9e1d1` | `#2b2733` | Text, variables | 13.74 / 12.61 |
 | Wrought iron | `iron` | `#9a948c` | `#64606c` | Punctuation | 5.94 / 5.30 |
-| Incense | `incense` | `#9e8d99` | `#8a7f8c` | Comments | 5.72 / 3.31 * |
+| Incense | `incense` | `#9e8d99` | `#8a7f8c` | Comments, docstrings | 5.72 / 3.31 * |
 | Crimson | `crimson` | `#c42740` | `#c42740` | Accent, caret, selection |  |
 | Crimson deep | `crimson_deep` | `#7e1023` | `#7e1023` | Selection border |  |
-| Blood | `blood` | `#e2586a` | `#bb1f39` | Keywords, control flow, booleans, tags, exceptions | 4.97 / 5.40 |
+| Blood | `blood` | `#e2586a` | `#bb1f39` | Keywords, control flow, booleans and null, tags, exceptions | 4.97 / 5.40 |
 | Lapis | `lapis` | `#6886bb` | `#2d5c9c` | Functions, JSON and YAML keys | 4.86 / 5.82 |
 | Tallow | `tallow` | `#dccb9a` | `#7e6410` | Types, classes, namespaces, attributes | 11.10 / 4.89 |
 | Amber | `amber` | `#cf9142` | `#9f5c12` | Numbers, constants | 6.62 / 4.53 |
@@ -61,9 +61,9 @@ The shape of the letter tells you the role before the colour does.
 
 | Style | Roles |
 |---|---|
-| *Italic* | comments, keywords and declarations, imports, functions, types and classes, parameters, attributes, builtins and `self`, constants, exceptions |
+| *Italic* | comments, keywords and declarations, imports, functions, types and classes, parameters, attributes, builtins and `self`, JSON and YAML values, exceptions |
 | **Bold** | control flow: `if`, `for`, `while`, `return` |
-| ***Bold italic*** | booleans |
+| ***Bold italic*** | booleans and null |
 | Regular | strings, numbers, operators, punctuation, variables, keys, properties |
 
 ## Ports

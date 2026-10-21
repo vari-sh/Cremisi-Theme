@@ -46,12 +46,12 @@
     "editorRuler.foreground": "#2b273314",
     "editorBracketMatch.background": "#bb1f3926",
     "editorBracketMatch.border": "#bb1f3999",
-    "editorBracketHighlight.foreground1": "#bb1f39",
-    "editorBracketHighlight.foreground2": "#9f5c12",
-    "editorBracketHighlight.foreground3": "#2d5c9c",
-    "editorBracketHighlight.foreground4": "#2f7a4e",
-    "editorBracketHighlight.foreground5": "#7e3a9e",
-    "editorBracketHighlight.foreground6": "#a24d20",
+    "editorBracketHighlight.foreground1": "#64606c",
+    "editorBracketHighlight.foreground2": "#64606c",
+    "editorBracketHighlight.foreground3": "#64606c",
+    "editorBracketHighlight.foreground4": "#64606c",
+    "editorBracketHighlight.foreground5": "#64606c",
+    "editorBracketHighlight.foreground6": "#64606c",
     "editorBracketHighlight.unexpectedBracket.foreground": "#c42740",
     "editorCodeLens.foreground": "#696164",
     "editorInlayHint.foreground": "#696164",
@@ -580,16 +580,6 @@
         "constant.language"
       ],
       "settings": {
-        "foreground": "#9f5c12",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Booleans",
-      "scope": [
-        "constant.language.boolean"
-      ],
-      "settings": {
         "foreground": "#bb1f39",
         "fontStyle": "bold italic"
       }
@@ -968,6 +958,43 @@
       }
     },
     {
+      "name": "Imports (VS Code)",
+      "scope": [
+        "keyword.control.export",
+        "keyword.control.from",
+        "meta.export.default keyword.control.default",
+        "meta.import keyword.control.as",
+        "meta.export keyword.control.as",
+        "meta.import keyword.control.type",
+        "meta.export keyword.control.type",
+        "meta.use.rust keyword.other.rust"
+      ],
+      "settings": {
+        "foreground": "#8a3f64",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Modules (VS Code)",
+      "scope": [
+        "entity.name.module"
+      ],
+      "settings": {
+        "foreground": "#7e6410",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Enum members (VS Code)",
+      "scope": [
+        "variable.other.enummember"
+      ],
+      "settings": {
+        "foreground": "#9f5c12",
+        "fontStyle": ""
+      }
+    },
+    {
       "name": "Preprocessor (VS Code)",
       "scope": [
         "keyword.control.directive",
@@ -1057,7 +1084,10 @@
         "entity.name.function.decorator",
         "punctuation.definition.decorator",
         "meta.function.decorator support.type",
-        "meta.attribute.rust"
+        "meta.function.decorator punctuation.separator.period.python",
+        "meta.attribute.rust",
+        "punctuation.definition.attribute.rust",
+        "meta.attribute.rust entity.name.type"
       ],
       "settings": {
         "foreground": "#a24d20",
@@ -1069,6 +1099,18 @@
       "scope": [
         "constant.character.format.placeholder",
         "storage.type.format"
+      ],
+      "settings": {
+        "foreground": "#a24d20",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Interpolations (VS Code)",
+      "scope": [
+        "punctuation.definition.template-expression",
+        "punctuation.definition.interpolation",
+        "meta.interpolation.rust"
       ],
       "settings": {
         "foreground": "#a24d20",
@@ -1091,10 +1133,42 @@
       }
     },
     {
+      "name": "Python docstrings (VS Code)",
+      "scope": [
+        "string.quoted.docstring",
+        "string.quoted.docstring punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#8a7f8c",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Python regex text (VS Code)",
+      "scope": [
+        "string.regexp.quoted"
+      ],
+      "settings": {
+        "foreground": "#2f7a4e",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Regex set brackets (VS Code)",
+      "scope": [
+        "string.regexp constant.other.set"
+      ],
+      "settings": {
+        "foreground": "#64606c",
+        "fontStyle": ""
+      }
+    },
+    {
       "name": "Number prefixes and suffixes (VS Code)",
       "scope": [
         "constant.numeric storage.type.number",
-        "keyword.other.unit"
+        "keyword.other.unit",
+        "constant.numeric punctuation.separator"
       ],
       "settings": {
         "foreground": "#9f5c12",
@@ -1116,10 +1190,23 @@
       "scope": [
         "meta.attribute.python",
         "variable.object.property",
-        "variable.other.constant.property"
+        "variable.other.constant.property",
+        "support.variable.property"
       ],
       "settings": {
         "foreground": "#1a706d",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Member access (VS Code)",
+      "scope": [
+        "punctuation.separator.period.python",
+        "punctuation.separator.pointer-access",
+        "punctuation.separator.dot-access"
+      ],
+      "settings": {
+        "foreground": "#8a3f64",
         "fontStyle": ""
       }
     },

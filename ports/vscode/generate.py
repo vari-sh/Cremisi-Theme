@@ -24,13 +24,19 @@ SCOPE_SWAP = {"meta.function-call": "meta.function-call.generic"}
 
 # Scopes that VS Code's own grammars name differently from Sublime Text's.
 # They come after the palette rules, so they win ties. Checked with vscode-textmate
-# against the grammars that ship with VS Code.
+# against the grammars that ship with VS Code. VS Code ranks a rule by its last scope
+# first: a selector with a parent must name that scope at least as fully as the rule it beats.
 JS_TS = ("js", "jsx", "ts", "tsx")
 VSCODE_RULES = [
     ("Declaration keywords (VS Code)", ", ".join(
         ["storage.type.struct", "storage.type.enum", "storage.type.union", "storage.type.interface",
          "storage.type.type", "storage.type.namespace", "storage.type.rust"]
         + [f"storage.type.{x}" for x in JS_TS]), "blood", "italic"),
+    ("Imports (VS Code)", "keyword.control.export, keyword.control.from, meta.export.default keyword.control.default, "
+     "meta.import keyword.control.as, meta.export keyword.control.as, meta.import keyword.control.type, "
+     "meta.export keyword.control.type, meta.use.rust keyword.other.rust", "wine", "italic"),
+    ("Modules (VS Code)", "entity.name.module", "tallow", "italic"),
+    ("Enum members (VS Code)", "variable.other.enummember", "amber", None),
     ("Preprocessor (VS Code)", "keyword.control.directive, meta.preprocessor punctuation.definition.directive", "wine", "italic"),
     ("Macros (VS Code)", "entity.name.function.preprocessor, entity.name.function.macro", "wine", None),
     ("JSON keys (VS Code)", "support.type.property-name.json", "lapis", None),
@@ -39,12 +45,22 @@ VSCODE_RULES = [
     ("YAML colons (VS Code)", "punctuation.separator.map", "wine", None),
     ("YAML directives (VS Code)", "meta.directives.yaml punctuation.definition.directive", "wine", None),
     ("YAML anchors and aliases (VS Code)", "keyword.control.flow.anchor.yaml, keyword.control.flow.alias.yaml, variable.other.anchor.yaml", "amethyst", None),
-    ("Decorators (VS Code)", "entity.name.function.decorator, punctuation.definition.decorator, meta.function.decorator support.type, meta.attribute.rust", "sealwax", None),
+    # The whole decorator is sealing wax, its dots and a Rust attribute's derived traits too.
+    ("Decorators (VS Code)", "entity.name.function.decorator, punctuation.definition.decorator, meta.function.decorator support.type, "
+     "meta.function.decorator punctuation.separator.period.python, meta.attribute.rust, punctuation.definition.attribute.rust, "
+     "meta.attribute.rust entity.name.type", "sealwax", None),
     ("Format placeholders (VS Code)", "constant.character.format.placeholder, storage.type.format", "sealwax", None),
+    ("Interpolations (VS Code)", "punctuation.definition.template-expression, punctuation.definition.interpolation, meta.interpolation.rust", "sealwax", None),
     ("Regex internals (VS Code)", "string.regexp constant.other, string.regexp constant.character, string.regexp keyword.control, string.regexp keyword.operator, string.regexp keyword.other, string.regexp support.other", "sealwax", None),
-    ("Number prefixes and suffixes (VS Code)", "constant.numeric storage.type.number, keyword.other.unit", "amber", None),
+    # Docstrings are documentation, like JSDoc and Rust's doc comments: incense, delimiters included.
+    ("Python docstrings (VS Code)", "string.quoted.docstring, string.quoted.docstring punctuation.definition.string", "incense", "italic"),
+    # Python raw strings are string.regexp: their plain text stays a string, as in Sublime Text.
+    ("Python regex text (VS Code)", "string.regexp.quoted", "malachite", None),
+    ("Regex set brackets (VS Code)", "string.regexp constant.other.set", "iron", None),
+    ("Number prefixes and suffixes (VS Code)", "constant.numeric storage.type.number, keyword.other.unit, constant.numeric punctuation.separator", "amber", None),
     ("Python self parameter (VS Code)", "variable.parameter.function.language.special.self", "amethyst", "italic"),
-    ("Properties (VS Code)", "meta.attribute.python, variable.object.property, variable.other.constant.property", "verdigris", None),
+    ("Properties (VS Code)", "meta.attribute.python, variable.object.property, variable.other.constant.property, support.variable.property", "verdigris", None),
+    ("Member access (VS Code)", "punctuation.separator.period.python, punctuation.separator.pointer-access, punctuation.separator.dot-access", "wine", None),
     # Every JS/TS `const` binding is variable.other.constant: keep it plain ink, as Sublime does.
     ("JS/TS const bindings (VS Code)", ", ".join(f"variable.other.constant.{x}" for x in JS_TS), "ink", None),
     ("Markdown inline code (VS Code)", "markup.inline.raw", "malachite", None),
@@ -186,12 +202,8 @@ def workbench(c, dark):
         "editorRuler.foreground": alpha(c["ink"], 0.08),
         "editorBracketMatch.background": alpha(c["blood"], 0.15),
         "editorBracketMatch.border": alpha(c["blood"], 0.6),
-        "editorBracketHighlight.foreground1": c["blood"],
-        "editorBracketHighlight.foreground2": c["amber"],
-        "editorBracketHighlight.foreground3": c["lapis"],
-        "editorBracketHighlight.foreground4": c["malachite"],
-        "editorBracketHighlight.foreground5": c["amethyst"],
-        "editorBracketHighlight.foreground6": c["sealwax"],
+        # Bracket pairs stay iron at every depth, as in Sublime Text and on the page.
+        **{f"editorBracketHighlight.foreground{n}": c["iron"] for n in range(1, 7)},
         "editorBracketHighlight.unexpectedBracket.foreground": c["crimson"],
         "editorCodeLens.foreground": muted,
         "editorInlayHint.foreground": muted,

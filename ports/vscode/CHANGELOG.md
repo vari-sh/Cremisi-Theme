@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.1
+
+- Booleans and null speak with the voice of blood: `True`, `False`, `None`, `null`, `undefined` and `NULL`
+  are all blood, bold italic. Python's grammar gives `True` and `None` the same scope, so they could not
+  differ. JSON and YAML values stay amber.
+- Brackets are iron at every depth, as in Sublime Text and on the page: bracket pair colorization no longer
+  paints them blood, amber and lapis.
+- Python docstrings are documentation, incense like comments, JSDoc and Rust's doc comments.
+- Aligned with the Sublime Text port and the page: decorator dots and Rust attributes (`#`, derived traits)
+  are sealing wax; member-access dots and C `->` are wine; `export`, `from`, `import type`, `as` and Rust
+  `use` read as imports.
+- Interpolations are sealing wax: TypeScript `${…}` and Rust format strings such as `{}` and `{left:>4}`.
+- Python raw strings keep their plain text in malachite, with only the regex internals in sealing wax and
+  character-set brackets in iron.
+- Rust modules are tallow, enum members amber, TypeScript built-in properties such as `.length` verdigris;
+  Rust floats no longer break at the decimal point.
+
 ## 0.2.0
 
 - Syntax checked token by token against the grammars that ship with VS Code: operators, JSON keys and

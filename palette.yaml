@@ -26,7 +26,7 @@ materials:
     en: Incense
     obsidian: "#9e8d99"
     ivory: "#8a7f8c"
-    role: Comments
+    role: Comments, docstrings
     story: Smoke that rises and fades between the lines.
     exempt: true
   - key: crimson
@@ -45,7 +45,7 @@ materials:
     en: Blood
     obsidian: "#e2586a"
     ivory: "#bb1f39"
-    role: Keywords, control flow, booleans, tags, exceptions
+    role: Keywords, control flow, booleans and null, tags, exceptions
     story: The word that commands.
     token: true
   - key: lapis
@@ -161,8 +161,7 @@ rules:
   - { name: Strings, scope: "string, string.quoted, string.unquoted", fg: malachite }
   - { name: Escapes and regex, scope: "constant.character.escape, constant.other.placeholder, string.regexp", fg: sealwax }
   - { name: Numbers, scope: "constant.numeric", fg: amber }
-  - { name: Language constants, scope: "constant.language", fg: amber, style: italic }
-  - { name: Booleans, scope: "constant.language.boolean", fg: blood, style: bold italic }
+  - { name: Language constants, scope: "constant.language", fg: blood, style: bold italic }
   - { name: Other constants, scope: "constant.other, variable.other.constant", fg: amber }
   - { name: Parameters, scope: "variable.parameter", fg: petal, style: italic }
   - { name: Variables, scope: "variable, variable.other", fg: ink }
