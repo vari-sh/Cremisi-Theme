@@ -2,6 +2,7 @@
  * Cremisi Obsidian — Typora theme
  * A gothic, arcane colour scheme. Blood is the protagonist, bone is the text, stone is the ground.
  * Based on Cremisi by vari.sh — https://vari-sh.github.io/cremisi/
+ * Generated from palette.yaml by generate.py: edit the palette, not this file.
  */
 
 @import "cremisi/cremisi-base.css";
@@ -11,16 +12,16 @@
   --mermaid-theme: dark;
 
   /* stone */
-  --cr-void: #070809;
+  --cr-void: #0c0c10;
   --cr-crypt: #0c0c10;
   --cr-ground: #17171c;
   --cr-border: #302f35;
-  --cr-border-2: #363a3d;
+  --cr-border-2: #4e4a50;
   --cr-gutter: #4e4a50;
 
   /* bone */
   --cr-ink: #e9e1d1;
-  --cr-ink-dim: #bdb4a5;
+  --cr-ink-dim: #cfc6b8;
   --cr-side-fg: #e9e1d1;
   --cr-iron: #9a948c;
   --cr-incense: #9e8d99;
@@ -29,8 +30,8 @@
   --cr-crimson: #c42740;
   --cr-crimson-deep: #7e1023;
   --cr-blood: #e2586a;
-  --cr-title: #d9485d;
-  --cr-title-shadow: 0 3px 0 rgba(0, 0, 0, .55), 0 0 36px rgba(217, 72, 93, .25);
+  --cr-title: #e2586a;
+  --cr-title-shadow: 0 3px 0 rgba(0, 0, 0, .55), 0 0 36px rgba(226, 88, 106, .25);
   --cr-link: #ef6f80;
   --cr-link-line: rgba(239, 111, 128, .35);
 
@@ -48,16 +49,21 @@
 
   /* interface */
   --cr-sel: rgba(196, 39, 64, .38);
-  --cr-sel-fg: #fff;
+  --cr-sel-fg: #f4eee2;
   --cr-sel-soft: rgba(196, 39, 64, .16);
   --cr-sel-faint: rgba(196, 39, 64, .06);
   --cr-hover: rgba(233, 225, 209, .06);
   --cr-zebra: rgba(233, 225, 209, .018);
   --cr-mark: rgba(207, 145, 66, .26);
-  --cr-mark-fg: #f1e3c0;
+  --cr-mark-fg: #e9e1d1;
   --cr-glow: rgba(196, 39, 64, .13);
   --cr-glow-strong: rgba(196, 39, 64, .45);
   --cr-scroll: rgba(233, 225, 209, .12);
   --cr-scroll-hover: rgba(233, 225, 209, .22);
+  --cr-void-fg: #e9e1d1;
+  --cr-on-accent: #f4eee2;
+  --cr-accent-top: #c42740;
+  --cr-accent-bottom: #a11730;
+  --cr-backdrop: rgba(12, 12, 16, .6);
   --cr-code-shadow: 0 12px 30px -20px rgba(0, 0, 0, .8);
 }

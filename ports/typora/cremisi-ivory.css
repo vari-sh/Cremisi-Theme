@@ -2,6 +2,7 @@
  * Cremisi Ivory — Typora theme
  * The same stone, read from the opposite end: vellum ground, scriptorium ink, the same crimson.
  * Based on Cremisi by vari.sh — https://vari-sh.github.io/cremisi/
+ * Generated from palette.yaml by generate.py: edit the palette, not this file.
  */
 
 @import "cremisi/cremisi-base.css";
@@ -59,5 +60,10 @@
   --cr-glow-strong: rgba(196, 39, 64, .28);
   --cr-scroll: rgba(43, 39, 51, .16);
   --cr-scroll-hover: rgba(43, 39, 51, .28);
+  --cr-void-fg: #e9e1d1;
+  --cr-on-accent: #f4eee2;
+  --cr-accent-top: #c42740;
+  --cr-accent-bottom: #a11730;
+  --cr-backdrop: rgba(12, 12, 16, .6);
   --cr-code-shadow: none;
 }

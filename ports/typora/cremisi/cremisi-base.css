@@ -67,11 +67,11 @@
   --select-text-font-color: var(--cr-ink);
   --primary-color: var(--cr-crimson);
   --primary-btn-border-color: var(--cr-crimson);
-  --primary-btn-text-color: #fff;
+  --primary-btn-text-color: var(--cr-on-accent);
   --window-border: 1px solid var(--cr-border);
   --rawblock-edit-panel-bd: var(--cr-crypt);
   --search-select-bg-color: var(--cr-crimson);
-  --search-select-text-color: #fff;
+  --search-select-text-color: var(--cr-on-accent);
   --md-char-color: var(--cr-gutter);
   --meta-content-color: var(--cr-incense);
   --heading-char-color: var(--cr-gutter);
@@ -429,7 +429,7 @@ h6.md-focus .md-attr {
   top: .08em;
   width: .26em;
   height: .52em;
-  border: solid #fff;
+  border: solid var(--cr-on-accent);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -1019,7 +1019,7 @@ mjx-container {
 .md-search-select,
 .md-search-hit.md-search-select {
   background: var(--cr-crimson);
-  color: #fff;
+  color: var(--cr-on-accent);
 }
 
 /* ───────────────────────── Mermaid & diagrams ───────────────────────── */
@@ -1308,7 +1308,7 @@ mjx-container {
 }
 .searchpanel-search-option-btn.active {
   background: var(--cr-crimson);
-  color: #fff;
+  color: var(--cr-on-accent);
   border-color: var(--cr-crimson);
 }
 
@@ -1405,7 +1405,7 @@ mjx-container {
 .md-hover-tip .md-arrow::after,
 div.code-tooltip {
   background: var(--cr-void);
-  color: var(--cr-ink);
+  color: var(--cr-void-fg);
 }
 
 .native-window #md-notification,
@@ -1435,7 +1435,7 @@ div.code-tooltip {
 }
 .modal-backdrop,
 .modal-backdrop.in {
-  background: rgba(7, 8, 9, .6);
+  background: var(--cr-backdrop);
   opacity: 1;
   backdrop-filter: blur(4px);
 }
@@ -1483,16 +1483,16 @@ div.code-tooltip {
 }
 .btn-primary,
 .modal-content .btn-primary {
-  background: linear-gradient(180deg, #d4334c, #9a1429);
+  background: linear-gradient(180deg, var(--cr-accent-top), var(--cr-accent-bottom));
   border: 1px solid var(--cr-crimson-deep);
-  color: #fff;
+  color: var(--cr-on-accent);
   font-weight: 600;
   letter-spacing: .04em;
 }
 .btn-primary:hover,
 .btn-primary:focus {
   filter: brightness(1.12);
-  color: #fff;
+  color: var(--cr-on-accent);
 }
 .modal-footer .btn-default,
 .modal-footer .btn-primary,
@@ -1607,7 +1607,7 @@ div.code-tooltip {
 }
 #w-close:hover *,
 #top-titlebar #w-close:hover * {
-  color: #fff;
+  color: var(--cr-on-accent);
 }
 .mouse-hover .toolbar-icon.btn:hover,
 #w-full.mouse-hover,

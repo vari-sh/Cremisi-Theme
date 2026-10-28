@@ -20,6 +20,17 @@ Code fences follow the sixteen materials of the editor themes: keywords blood, f
 strings malachite, numbers amber, properties verdigris, comments incense.
 Mermaid diagrams use Typora's `dark` theme on Obsidian and `default` on Ivory.
 
+## Built, not drawn
+
+The two variant files are generated from the same `palette.yaml` as the editor ports and the page:
+
+```sh
+python3 ports/typora/generate.py      # from the root of vari-sh/Cremisi-Theme
+```
+
+Every `--cr-*` variable is a material or a step of the stone and blood scales, the interface roles following
+`scale_ui`. `cremisi/cremisi-base.css` is the layout, drawn by hand: it holds no colour of its own.
+
 ## Fonts
 
 Cinzel, Montserrat and JetBrains Mono are licensed under the SIL Open Font License 1.1:
