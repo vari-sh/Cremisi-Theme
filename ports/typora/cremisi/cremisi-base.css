@@ -1,0 +1,1744 @@
+/*
+ * Cremisi for Typora — shared base
+ * A gothic, arcane colour scheme · a reliquary of materials: blood, bone and stone.
+ * Palette and design: https://vari-sh.github.io/cremisi/ · https://github.com/vari-sh/Cremisi-Theme
+ *
+ * Every colour comes from a variable (--cr-*) defined by the variant file
+ * (cremisi-obsidian.css = Obsidian, cremisi-ivory.css = Ivory).
+ */
+
+/* ───────────────────────── Fonts (bundled, offline) ───────────────────────── */
+
+@font-face {
+  font-family: "Cremisi Cinzel";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: local("Cinzel"), url("fonts/cinzel.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cremisi Montserrat";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/montserrat.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cremisi Montserrat";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/montserrat-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cremisi JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("fonts/jetbrainsmono.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cremisi JetBrains Mono";
+  font-style: italic;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("fonts/jetbrainsmono-italic.woff2") format("woff2");
+}
+
+/* ───────────────────────── Typora variables ───────────────────────── */
+
+:root {
+  --cr-f-title: "Cremisi Cinzel", "Cinzel", "Trajan Pro", Georgia, serif;
+  --cr-f-text: "Cremisi Montserrat", "Montserrat", "Segoe UI", system-ui, sans-serif, "Segoe UI Emoji", "Apple Color Emoji";
+  --cr-f-code: "Cremisi JetBrains Mono", "JetBrains Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
+  --cr-ease: cubic-bezier(.2, .7, .1, 1);
+
+  --bg-color: var(--cr-ground);
+  --text-color: var(--cr-ink);
+  --side-bar-bg-color: var(--cr-crypt);
+  --control-text-color: var(--cr-iron);
+  --control-text-hover-color: var(--cr-ink);
+  --item-hover-bg-color: var(--cr-hover);
+  --item-hover-text-color: var(--cr-ink);
+  --active-file-bg-color: var(--cr-sel-soft);
+  --active-file-border-color: var(--cr-crimson);
+  --active-file-text-color: var(--cr-ink);
+  --select-text-bg-color: var(--cr-sel);
+  --select-text-font-color: var(--cr-ink);
+  --primary-color: var(--cr-crimson);
+  --primary-btn-border-color: var(--cr-crimson);
+  --primary-btn-text-color: #fff;
+  --window-border: 1px solid var(--cr-border);
+  --rawblock-edit-panel-bd: var(--cr-crypt);
+  --search-select-bg-color: var(--cr-crimson);
+  --search-select-text-color: #fff;
+  --md-char-color: var(--cr-gutter);
+  --meta-content-color: var(--cr-incense);
+  --heading-char-color: var(--cr-gutter);
+  --blur-text-color: var(--cr-gutter);
+  --monospace: var(--cr-f-code);
+  --code-block-bg-color: var(--cr-crypt);
+  --mermaid-font-family: var(--cr-f-text);
+}
+
+/* ───────────────────────── Page ───────────────────────── */
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  background: var(--cr-ground);
+  color: var(--cr-ink);
+  fill: currentColor;
+}
+
+body {
+  font-family: var(--cr-f-text);
+  line-height: 1.7;
+}
+
+/* the candle glow behind the hero */
+content,
+#write {
+  background: transparent;
+}
+body.typora-export,
+#typora-source,
+content {
+  background:
+    radial-gradient(1100px 520px at 50% -140px, var(--cr-glow), transparent 70%),
+    var(--cr-ground);
+  background-attachment: local;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+  font-family: var(--cr-f-text);
+  color: var(--cr-ink);
+}
+
+#write {
+  max-width: 1200px;
+  padding: 60px 40px 100px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--cr-ink);
+  caret-color: var(--cr-blood);
+}
+
+@media only screen and (max-width: 800px) {
+  #write { padding: 40px 24px 80px; }
+}
+
+::selection,
+*.in-text-selection {
+  background: var(--cr-sel);
+  color: var(--cr-sel-fg);
+  text-shadow: none;
+}
+
+/* ───────────────────────── Headings ───────────────────────── */
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  position: relative;
+  margin: 1.9em 0 .8em;
+  padding: 0;
+  line-height: 1.25;
+  word-wrap: break-word;
+  clear: both;
+}
+
+#write h1,
+#write h2,
+#write h3 {
+  font-family: var(--cr-f-title);
+  font-weight: 600;
+}
+
+/* h1 · blood — the hero title, with a crimson rule fading into stone */
+#write h1 {
+  font-size: 2.35em;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cr-title);
+  text-shadow: var(--cr-title-shadow);
+  padding-bottom: .38em;
+  margin-top: 1.4em;
+  background: linear-gradient(90deg, var(--cr-crimson), var(--cr-crimson-deep) 35%, transparent 85%) left bottom / 100% 1px no-repeat;
+}
+#write > h1:first-child,
+#write > .md-heading:first-child h1 {
+  margin-top: .2em;
+}
+
+/* h2 · amber — a section head, crowned by the crimson bar of the principles */
+#write h2 {
+  font-size: 1.65em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--cr-amber);
+  padding-top: .55em;
+}
+#write h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--cr-crimson);
+  transition: width .5s var(--cr-ease);
+}
+#write h2.md-focus::before,
+#write h2:hover::before {
+  width: 84px;
+}
+
+/* h3 · tallow */
+#write h3 {
+  font-size: 1.3em;
+  letter-spacing: .04em;
+  color: var(--cr-tallow);
+}
+
+/* h4 – h6 · kicker style */
+#write h4,
+#write h5,
+#write h6 {
+  font-family: var(--cr-f-text);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+#write h4 {
+  font-size: .98em;
+  letter-spacing: .16em;
+  color: var(--cr-malachite);
+}
+#write h5 {
+  font-size: .88em;
+  letter-spacing: .18em;
+  color: var(--cr-lapis);
+}
+#write h6 {
+  font-size: .8em;
+  font-weight: 500;
+  letter-spacing: .24em;
+  color: var(--cr-wine);
+}
+
+/* heading level hint on focus (h3–h6) */
+@media (min-width: 980px) {
+  #write h3.md-focus::before,
+  #write h4.md-focus::before,
+  #write h5.md-focus::before,
+  #write h6.md-focus::before {
+    position: absolute;
+    left: -2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--cr-f-title);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    line-height: 1;
+    text-transform: lowercase;
+    color: var(--cr-crimson);
+  }
+  #write h3.md-focus::before { content: "h3"; }
+  #write h4.md-focus::before { content: "h4"; }
+  #write h5.md-focus::before { content: "h5"; }
+  #write h6.md-focus::before { content: "h6"; }
+}
+
+.md-header-span .md-attr,
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr {
+  color: var(--cr-gutter);
+  display: inline;
+}
+
+/* ───────────────────────── Text ───────────────────────── */
+
+#write p,
+#write ul,
+#write ol,
+#write dl,
+#write > pre:not(.md-fences),
+#write table,
+#write blockquote,
+#write .md-fences,
+#write .md-alert {
+  margin: 0 0 1.15em;
+}
+
+#write strong,
+#write b {
+  font-weight: 700;
+  color: var(--cr-tallow);
+}
+
+#write em,
+#write i {
+  font-style: italic;
+  color: var(--cr-petal);
+}
+
+#write strong em,
+#write em strong {
+  color: var(--cr-amber);
+}
+
+#write del,
+#write s {
+  color: var(--cr-iron);
+  text-decoration-color: var(--cr-crimson);
+  text-decoration-thickness: 1px;
+}
+
+#write u {
+  text-decoration-color: var(--cr-crimson);
+  text-underline-offset: .2em;
+}
+
+#write mark {
+  background: var(--cr-mark);
+  color: var(--cr-mark-fg);
+  padding: .05em .25em;
+  border-radius: 2px;
+}
+
+#write sup,
+#write sub {
+  color: var(--cr-ink-dim);
+}
+
+/* links — blood that turns to tallow */
+#write a {
+  color: var(--cr-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cr-link-line);
+  transition: color .25s, border-color .25s;
+}
+#write a:hover {
+  color: var(--cr-tallow);
+  border-bottom-color: var(--cr-tallow);
+}
+#write .md-toc a,
+#write a.md-toc-inner,
+#write sup.md-footnote a,
+#write .md-def-name a {
+  border-bottom: 0;
+}
+
+/* ───────────────────────── Lists ───────────────────────── */
+
+#write ul,
+#write ol {
+  padding-left: 1.8em;
+}
+
+#write li {
+  margin: .2em 0;
+}
+#write li > p {
+  margin: 0;
+}
+
+#write ul {
+  list-style-type: "◆\2002";
+}
+#write ul ul {
+  list-style-type: "◇\2002";
+}
+#write ul ul ul {
+  list-style-type: "·\2002";
+}
+#write ul > li::marker {
+  color: var(--cr-crimson);
+  font-size: .7em;
+}
+#write ul ul ul > li::marker {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+#write ol > li::marker {
+  font-family: var(--cr-f-title);
+  font-weight: 700;
+  color: var(--cr-blood);
+  letter-spacing: .04em;
+}
+#write ol ol {
+  list-style-type: lower-roman;
+}
+#write ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+/* task lists — seals */
+#write .task-list-item,
+#write .md-task-list-item {
+  list-style-type: none;
+}
+#write .md-task-list-item > input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: .95em;
+  height: .95em;
+  margin-left: -1.45em;
+  margin-top: .42em;
+  border: 1.5px solid var(--cr-iron);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  transition: background .25s, border-color .25s;
+}
+#write .md-task-list-item > input:hover {
+  border-color: var(--cr-blood);
+}
+#write .md-task-list-item > input:checked,
+#write .md-task-list-item > input[checked] {
+  border-color: var(--cr-crimson);
+  background: var(--cr-crimson);
+  box-shadow: 0 0 10px -2px var(--cr-glow-strong);
+}
+#write .md-task-list-item > input:checked::before,
+#write .md-task-list-item > input[checked]::before {
+  content: "";
+  position: absolute;
+  left: .28em;
+  top: .08em;
+  width: .26em;
+  height: .52em;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+#write .md-task-list-item > input {
+  position: relative;
+}
+#write .task-list-done,
+#write .md-task-list-item.task-list-done > p {
+  color: var(--cr-iron);
+}
+
+/* definition-like spacing */
+#write dt {
+  font-weight: 600;
+  color: var(--cr-tallow);
+}
+
+/* ───────────────────────── Blockquote ───────────────────────── */
+
+#write blockquote {
+  position: relative;
+  padding: .9em 1.3em;
+  border-left: 2px solid var(--cr-crimson);
+  background: linear-gradient(90deg, var(--cr-sel-faint), transparent 60%), var(--cr-crypt);
+  border-radius: 0 6px 6px 0;
+  color: var(--cr-ink-dim);
+  font-weight: 300;
+}
+#write blockquote strong {
+  font-weight: 600;
+}
+#write blockquote > :last-child {
+  margin-bottom: 0;
+}
+#write blockquote blockquote {
+  margin-top: .6em;
+  background: transparent;
+  border-left-color: var(--cr-crimson-deep);
+}
+
+/* GitHub-style alerts */
+#write .md-alert {
+  padding: .9em 1.3em;
+  border-left: 2px solid var(--cr-crimson);
+  border-radius: 0 6px 6px 0;
+  background: var(--cr-crypt);
+}
+#write .md-alert > :last-child {
+  margin-bottom: 0;
+}
+#write .md-alert .md-alert-text {
+  margin-bottom: .35em;
+}
+#write .md-alert-note      { border-left-color: var(--cr-lapis); }
+#write .md-alert-tip       { border-left-color: var(--cr-malachite); }
+#write .md-alert-important { border-left-color: var(--cr-amethyst); }
+#write .md-alert-warning   { border-left-color: var(--cr-amber); }
+#write .md-alert-caution   { border-left-color: var(--cr-blood); }
+
+.md-alert-text {
+  font-family: var(--cr-f-title);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .85em;
+}
+.md-alert-text-note      { color: var(--cr-lapis); }
+.md-alert-text-tip       { color: var(--cr-malachite); }
+.md-alert-text-important { color: var(--cr-amethyst); }
+.md-alert-text-warning   { color: var(--cr-amber); }
+.md-alert-text-caution   { color: var(--cr-blood); }
+.md-alert-text svg path  { fill: currentColor; }
+
+/* ───────────────────────── Rule ───────────────────────── */
+
+#write hr {
+  position: relative;
+  overflow: visible;
+  height: 1px;
+  margin: 2.6em auto !important;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--cr-border-2) 20%, var(--cr-crimson) 50%, var(--cr-border-2) 80%, transparent);
+}
+#write hr::after {
+  content: "◆";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+  padding: 0 .7em;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--cr-crimson);
+  background: var(--cr-ground);
+}
+
+/* ───────────────────────── Inline code, kbd ───────────────────────── */
+
+#write code,
+#write tt,
+#write var {
+  font-family: var(--cr-f-code);
+  font-size: .86em;
+  padding: .12em .42em;
+  border: 1px solid var(--cr-border);
+  border-radius: 4px;
+  background: var(--cr-crypt);
+  color: var(--cr-malachite);
+}
+
+#write kbd {
+  font-family: var(--cr-f-code);
+  font-size: .8em;
+  padding: .12em .5em;
+  border: 1px solid var(--cr-border-2);
+  border-bottom: 2px solid var(--cr-crimson-deep);
+  border-radius: 4px;
+  background: var(--cr-crypt);
+  color: var(--cr-ink);
+  box-shadow: none;
+}
+
+/* ───────────────────────── Code fences — the scriptorium ───────────────────────── */
+
+/* a plain stone slab with the crimson edge of the active tab */
+#write pre.md-fences,
+.md-fences {
+  padding: 10px 8px;
+  border: 1px solid var(--cr-border);
+  border-top: 2px solid var(--cr-crimson);
+  border-radius: 6px;
+  background: var(--cr-crypt);
+  font-family: var(--cr-f-code);
+  font-size: .88em;
+  line-height: 1.5;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+  box-shadow: var(--cr-code-shadow);
+}
+
+.md-fences .CodeMirror pre.CodeMirror-line,
+.md-fences .CodeMirror pre.CodeMirror-line-like {
+  margin: 0;
+}
+
+.CodeMirror {
+  font-family: var(--cr-f-code);
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+.CodeMirror-gutters {
+  background: transparent;
+  border-right: 1px solid var(--cr-border);
+}
+.CodeMirror-linenumber {
+  color: var(--cr-gutter);
+  padding-right: 10px;
+}
+.CodeMirror-activeline .CodeMirror-linenumber {
+  color: var(--cr-blood);
+}
+.md-fences.md-focus .CodeMirror-activeline-background {
+  background: var(--cr-hover);
+}
+
+.CodeMirror div.CodeMirror-cursor,
+.CodeMirror-cursor {
+  border-left: 2px solid var(--cr-blood);
+}
+
+.CodeMirror-selected,
+.CodeMirror-focused .CodeMirror-selected,
+.CodeMirror-selectedtext,
+.CodeMirror-line::selection,
+.CodeMirror-line > span::selection,
+.CodeMirror-line > span > span::selection {
+  background: var(--cr-sel) !important;
+}
+.CodeMirror-selectedtext {
+  color: inherit !important;
+}
+
+.CodeMirror-matchingbracket {
+  color: var(--cr-blood) !important;
+  text-decoration: underline;
+  text-decoration-color: var(--cr-crimson);
+  text-underline-offset: 3px;
+}
+.CodeMirror-nonmatchingbracket {
+  color: var(--cr-crimson) !important;
+  background: var(--cr-sel-soft);
+}
+
+.code-tooltip,
+div.code-tooltip {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, .6);
+}
+.code-tooltip input,
+.code-tooltip .ty-input {
+  color: var(--cr-ink);
+  background: transparent;
+}
+
+/* ───────────────────────── Syntax — the sixteen materials ───────────────────────── */
+
+.cm-s-inner {
+  color: var(--cr-ink);
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+  color: var(--cr-incense);
+  font-style: italic;
+}
+
+.cm-s-inner .cm-keyword {
+  color: var(--cr-blood);
+  font-weight: 500;
+}
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+  color: var(--cr-blood);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.cm-s-inner .cm-def {
+  color: var(--cr-lapis);
+  font-style: italic;
+}
+.cm-s-inner .cm-variable {
+  color: var(--cr-ink);
+}
+/* $variables (PowerShell), locals and parameters (JS) */
+.cm-s-inner .cm-variable-2 {
+  color: var(--cr-petal);
+}
+.cm-s-inner .cm-identifier {
+  color: var(--cr-ink);
+}
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type {
+  color: var(--cr-tallow);
+  font-style: italic;
+}
+.cm-s-inner .cm-property {
+  color: var(--cr-verdigris);
+}
+.cm-s-inner .cm-operator {
+  color: var(--cr-wine);
+}
+
+.cm-s-inner .cm-string {
+  color: var(--cr-malachite);
+}
+.cm-s-inner .cm-string-2 {
+  color: var(--cr-sealwax);
+}
+
+.cm-s-inner .cm-number {
+  color: var(--cr-amber);
+}
+
+.cm-s-inner .cm-builtin {
+  color: var(--cr-amethyst);
+  font-style: italic;
+}
+.cm-s-inner .cm-meta {
+  color: var(--cr-sealwax);
+}
+.cm-s-inner .cm-qualifier {
+  color: var(--cr-tallow);
+  font-style: italic;
+}
+
+.cm-s-inner .cm-tag {
+  color: var(--cr-blood);
+}
+.cm-s-inner .cm-attribute {
+  color: var(--cr-tallow);
+  font-style: italic;
+}
+
+.cm-s-inner .cm-bracket,
+.cm-s-inner .cm-punctuation {
+  color: var(--cr-iron);
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner.cm-header {
+  color: var(--cr-blood);
+  font-weight: 700;
+}
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+  color: var(--cr-incense);
+  font-style: italic;
+}
+.cm-s-inner .cm-link {
+  color: var(--cr-lapis);
+}
+.cm-s-inner .cm-url {
+  color: var(--cr-verdigris);
+}
+.cm-s-inner .cm-strong {
+  color: var(--cr-tallow);
+  font-weight: 700;
+}
+.cm-s-inner .cm-em {
+  color: var(--cr-petal);
+  font-style: italic;
+}
+.cm-s-inner .cm-hr {
+  color: var(--cr-iron);
+}
+
+.cm-s-inner .cm-positive {
+  color: var(--cr-malachite);
+}
+.cm-s-inner .cm-negative {
+  color: var(--cr-blood);
+}
+
+.cm-s-inner .cm-error {
+  color: var(--cr-blood);
+  text-decoration: underline wavy var(--cr-crimson);
+}
+
+/* ───────────────────────── Source mode ───────────────────────── */
+
+#typora-source {
+  font-family: var(--cr-f-code);
+  color: var(--cr-ink);
+}
+#typora-source .CodeMirror-lines {
+  max-width: 1200px;
+}
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+  border-left: 2px solid var(--cr-blood);
+}
+.cm-s-typora-default .CodeMirror-activeline-background {
+  background: var(--cr-hover);
+}
+.cm-s-typora-default .cm-header {
+  color: var(--cr-blood);
+  font-weight: 700;
+}
+.cm-s-typora-default .cm-header-2 { color: var(--cr-amber); }
+.cm-s-typora-default .cm-header-3 { color: var(--cr-tallow); }
+.cm-s-typora-default .cm-header-4 { color: var(--cr-malachite); }
+.cm-s-typora-default .cm-header-5 { color: var(--cr-lapis); }
+.cm-s-typora-default .cm-header-6 { color: var(--cr-wine); }
+.cm-s-typora-default .cm-strong {
+  color: var(--cr-tallow);
+  font-weight: 700;
+}
+.cm-s-typora-default .cm-em {
+  color: var(--cr-petal);
+  font-style: italic;
+}
+.cm-s-typora-default .cm-link {
+  color: var(--cr-lapis);
+}
+.cm-s-typora-default .cm-url,
+.cm-s-typora-default .cm-string {
+  color: var(--cr-verdigris);
+}
+.cm-s-typora-default .cm-comment,
+.cm-s-typora-default .cm-code {
+  color: var(--cr-malachite);
+}
+.cm-s-typora-default .cm-quote {
+  color: var(--cr-incense);
+  font-style: italic;
+}
+.cm-s-typora-default .cm-variable-2,
+.cm-s-typora-default .cm-variable-3,
+.cm-s-typora-default .cm-keyword {
+  color: var(--cr-ink);
+}
+.cm-s-typora-default .cm-formatting,
+.cm-s-typora-default .cm-formatting-list,
+.cm-s-typora-default .cm-formatting-header,
+.cm-s-typora-default .cm-formatting-quote,
+.cm-s-typora-default .cm-meta {
+  color: var(--cr-blood);
+}
+.cm-s-typora-default .cm-hr {
+  color: var(--cr-iron);
+}
+.cm-s-typora-default .cm-atom,
+.cm-s-typora-default .cm-number {
+  color: var(--cr-amber);
+}
+.cm-s-typora-default .cm-tag {
+  color: var(--cr-blood);
+}
+.cm-s-typora-default .cm-attribute,
+.cm-s-typora-default .cm-property {
+  color: var(--cr-tallow);
+}
+.cm-s-typora-default .cm-strikethrough {
+  color: var(--cr-iron);
+}
+
+/* ───────────────────────── Tables ───────────────────────── */
+
+#write table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--cr-border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: .95em;
+}
+#write table th,
+#write table td {
+  padding: .6em 1em;
+  border: 0;
+  border-bottom: 1px solid var(--cr-border);
+  border-right: 1px solid var(--cr-border);
+  vertical-align: top;
+}
+#write table th:last-child,
+#write table td:last-child {
+  border-right: 0;
+}
+#write table tbody tr:last-child td {
+  border-bottom: 0;
+}
+#write table thead th {
+  background: var(--cr-crypt);
+  font-weight: 600;
+  font-size: .8em;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cr-tallow);
+  border-bottom: 1px solid var(--cr-crimson-deep);
+}
+#write table tbody tr {
+  transition: background .25s;
+}
+#write table tbody tr:nth-child(2n) {
+  background: var(--cr-zebra);
+}
+#write table tbody tr:hover {
+  background: var(--cr-sel-faint);
+}
+
+.ty-table-edit,
+.md-table-resize-popover {
+  background: var(--cr-crypt);
+  border-top: 1px solid var(--cr-border);
+}
+
+/* ───────────────────────── Images, figures ───────────────────────── */
+
+#write img {
+  border-radius: 4px;
+}
+.md-image > .md-meta {
+  color: var(--cr-iron);
+  background: transparent;
+  font-family: var(--cr-f-code);
+}
+.md-expand.md-image > .md-meta {
+  color: var(--cr-ink-dim);
+}
+
+/* ───────────────────────── Footnotes, TOC, meta, math ───────────────────────── */
+
+#write sup.md-footnote {
+  background: transparent;
+  color: var(--cr-blood);
+  font-weight: 600;
+  padding: 0 .15em;
+}
+#write .footnotes {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid var(--cr-border);
+  color: var(--cr-ink-dim);
+  font-size: .9em;
+}
+.md-def-name {
+  color: var(--cr-blood);
+}
+
+#write .md-toc {
+  padding: 1em 1.2em;
+  border: 1px solid var(--cr-border);
+  border-left: 2px solid var(--cr-crimson);
+  border-radius: 0 8px 8px 0;
+  background: var(--cr-crypt);
+  font-size: .95em;
+}
+#write .md-toc-content {
+  margin: 0;
+}
+.md-toc-item {
+  color: var(--cr-ink-dim);
+}
+.md-toc-item a,
+#write a.md-toc-inner {
+  color: var(--cr-ink-dim);
+}
+.md-toc-item a:hover,
+#write a.md-toc-inner:hover {
+  color: var(--cr-blood);
+}
+.md-toc-h1 .md-toc-inner {
+  font-family: var(--cr-f-title);
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--cr-ink);
+}
+#write div.md-toc-tooltip {
+  background: var(--cr-crypt);
+}
+
+#write pre.md-meta-block {
+  padding: .9em 1.2em;
+  margin-bottom: 2em;
+  border: 0;
+  border-left: 2px solid var(--cr-lapis);
+  border-radius: 0 6px 6px 0;
+  background: var(--cr-crypt);
+  color: var(--cr-incense);
+  font-family: var(--cr-f-code);
+  font-size: .85em;
+  line-height: 1.7;
+}
+
+.md-comment {
+  color: var(--cr-incense);
+  font-style: italic;
+}
+
+.md-inline-math svg,
+.MathJax_SVG,
+mjx-container {
+  color: var(--cr-ink);
+}
+.md-inline-math script {
+  color: var(--cr-lapis);
+}
+#math-inline-preview .md-arrow::after {
+  background: var(--cr-crypt);
+}
+.md-mathjax-midline {
+  background: var(--cr-crypt);
+  border-bottom: 0;
+}
+#write .md-math-block .md-rawblock-container,
+#write .md-rawblock .md-rawblock-container {
+  color: var(--cr-ink);
+}
+
+.md-rawblock-control:not(.md-rawblock-tooltip) {
+  background: var(--cr-crypt);
+}
+.md-rawblock:hover > .md-rawblock-container {
+  background: var(--cr-hover);
+}
+
+.md-diagram-panel-error {
+  color: var(--cr-blood);
+}
+#write .md-focus .md-diagram-panel {
+  border: 1px solid var(--cr-border);
+  border-radius: 8px;
+}
+
+.md-search-hit {
+  background: var(--cr-mark);
+  color: var(--cr-mark-fg);
+  border-radius: 2px;
+}
+.md-search-hit * {
+  color: inherit;
+}
+.md-search-select,
+.md-search-hit.md-search-select {
+  background: var(--cr-crimson);
+  color: #fff;
+}
+
+/* ───────────────────────── Mermaid & diagrams ───────────────────────── */
+
+#write svg .label,
+#write svg text,
+#write svg .nodeLabel,
+#write svg .edgeLabel {
+  color: var(--cr-ink);
+  fill: var(--cr-ink);
+  font-family: var(--cr-f-text);
+}
+#write svg .node rect,
+#write svg .node circle,
+#write svg .node ellipse,
+#write svg .node polygon,
+#write svg .node path,
+#write svg rect.actor,
+#write svg .cluster rect {
+  fill: var(--cr-crypt);
+  stroke: var(--cr-crimson);
+}
+#write svg .edgePath .path,
+#write svg .flowchart-link,
+#write svg .messageLine0,
+#write svg .messageLine1,
+#write svg line {
+  stroke: var(--cr-iron);
+}
+#write svg .arrowheadPath,
+#write svg marker path {
+  fill: var(--cr-iron);
+  stroke: var(--cr-iron);
+}
+#write svg .edgeLabel rect,
+#write svg .edgeLabel p {
+  background: var(--cr-ground);
+  fill: var(--cr-ground);
+}
+
+/* ───────────────────────── Focus mode ───────────────────────── */
+
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+  color: var(--cr-gutter) !important;
+}
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container) > input {
+  opacity: .35 !important;
+}
+.on-focus-mode li[cid]:not(.md-focus-container) {
+  color: var(--cr-gutter);
+}
+.on-focus-mode .md-fences.md-focus .CodeMirror-code > *:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) *,
+.on-focus-mode #typora-source .CodeMirror-code > *:not(.CodeMirror-activeline) * {
+  color: var(--cr-gutter) !important;
+}
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+  color: var(--cr-ink);
+}
+
+/* ───────────────────────── Scrollbars ───────────────────────── */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cr-scroll);
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cr-scroll-hover);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:active {
+  background: var(--cr-crimson);
+  background-clip: content-box;
+}
+.typora-node::-webkit-scrollbar {
+  width: 10px;
+}
+.typora-node::-webkit-scrollbar-thumb:vertical {
+  background: var(--cr-scroll);
+  background-clip: content-box;
+}
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+  background: var(--cr-crimson);
+  background-clip: content-box;
+}
+
+/* ───────────────────────── Sidebar ───────────────────────── */
+
+#typora-sidebar {
+  background: var(--cr-crypt);
+  border-right: 1px solid var(--cr-border);
+  box-shadow: none;
+  color: var(--cr-side-fg);
+}
+.sidebar-tabs {
+  border-bottom: 1px solid var(--cr-border);
+}
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover,
+.ty-show-search #info-panel-tab-search {
+  color: var(--cr-ink);
+}
+/* the crimson bar under the active tab, set apart from the label */
+.info-panel-tab-border {
+  width: 56%;
+  margin: 6px auto 0;
+  border-radius: 1px;
+}
+.active-tab-files #info-panel-tab-file .info-panel-tab-border,
+.active-tab-outline #info-panel-tab-outline .info-panel-tab-border,
+.ty-show-search #info-panel-tab-search .info-panel-tab-border {
+  height: 2px;
+  background-color: var(--cr-crimson);
+}
+.sidebar-content {
+  background: transparent;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+  border-left: 0;
+}
+.outline-title-wrapper .btn,
+.sidebar-footer-item,
+.footer-item {
+  color: var(--cr-iron);
+}
+.sidebar-footer-item:hover,
+.footer-item:hover {
+  background: var(--cr-hover);
+  color: var(--cr-ink);
+}
+
+.outline-item {
+  border-left: 2px solid transparent;
+  transition: background .2s, color .2s;
+}
+.outline-item:hover {
+  background: var(--cr-hover);
+  border-color: transparent;
+  color: var(--cr-ink);
+}
+.outline-item-active {
+  color: var(--cr-blood);
+  font-weight: 600;
+}
+.outline-label {
+  color: inherit;
+}
+.outline-h1 > .outline-item .outline-label {
+  font-family: var(--cr-f-title);
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.outline-expander::before {
+  color: var(--cr-gutter);
+}
+.outline-expander:hover::before {
+  color: var(--cr-blood);
+}
+
+/* file tree */
+.file-tree-node .file-node-content,
+.file-node-title {
+  color: var(--cr-side-fg);
+}
+.file-node-icon,
+.file-node-open-state {
+  color: var(--cr-gutter);
+}
+.file-library-node:not(.active) > .file-node-content:hover .file-node-icon,
+.file-library-node:not(.active) > .file-node-content:hover .file-node-open-state {
+  color: var(--cr-blood);
+}
+.file-tree-node.active > .file-node-background,
+.file-library-node.active > .file-node-background {
+  background: var(--cr-sel-soft);
+  border-left: 2px solid var(--cr-crimson);
+}
+.file-tree-node.active > .file-node-content,
+.file-library-node.active > .file-node-content,
+.file-library-node.active > .file-node-content .file-node-icon {
+  color: var(--cr-ink);
+}
+.file-tree-node.active > .file-node-content .file-node-icon,
+.file-library-node.active > .file-node-content .file-node-icon {
+  color: var(--cr-blood);
+}
+.file-node-background {
+  height: 32px;
+}
+.file-node-expanded > .file-node-children {
+  display: grid;
+}
+
+/* file list */
+.file-list-item {
+  border-bottom: 1px solid var(--cr-border);
+  border-left: 2px solid transparent;
+}
+.file-list-item:hover {
+  background: var(--cr-hover);
+}
+.file-list-item.active {
+  background: var(--cr-sel-soft);
+  border-left-color: var(--cr-crimson);
+  color: var(--cr-ink);
+}
+.file-list-item.active:first-child {
+  border-top: 0;
+}
+.file-list-item-file-name {
+  font-weight: 600;
+  color: var(--cr-ink);
+}
+.file-list-item-summary {
+  color: var(--cr-iron);
+  opacity: 1;
+}
+.file-list-item-time,
+.file-list-item-parent-loc {
+  color: var(--cr-gutter);
+}
+
+#sidebar-files-menu,
+#ty-sidebar-search-back-btn,
+.ty-search-item-line {
+  color: var(--cr-side-fg);
+}
+#sidebar-files-menu {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, .55);
+}
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a::after {
+  color: var(--cr-blood);
+}
+
+.ty-search-item-line:hover,
+.ty-search-item-line.active {
+  background: var(--cr-sel-soft);
+}
+.ty-search-item-line .match,
+.ty-search-item-line .highlight {
+  color: var(--cr-blood);
+}
+
+/* ───────────────────────── Search & replace, quick open ───────────────────────── */
+
+#md-searchpanel {
+  background: var(--cr-crypt);
+  border-bottom: 1px solid var(--cr-border);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, .55);
+}
+#md-searchpanel input {
+  background: var(--cr-ground);
+  color: var(--cr-ink);
+  border: 1px solid var(--cr-gutter);
+  border-radius: 4px;
+}
+#md-searchpanel input:focus {
+  border-color: var(--cr-crimson);
+  outline: 0;
+  box-shadow: none;
+}
+#md-searchpanel .btn {
+  color: var(--cr-iron);
+}
+#md-searchpanel .btn:hover {
+  color: var(--cr-ink);
+}
+.searchpanel-search-option-btn.active {
+  background: var(--cr-crimson);
+  color: #fff;
+  border-color: var(--cr-crimson);
+}
+
+#typora-quick-open,
+.auto-suggest-container {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  border-radius: 8px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(0, 0, 0, .2);
+  color: var(--cr-ink);
+}
+#typora-quick-open input {
+  background: var(--cr-ground);
+  color: var(--cr-ink);
+  border: 0;
+  border-bottom: 1px solid var(--cr-crimson-deep);
+}
+.typora-quick-open-item {
+  background: inherit;
+  color: inherit;
+  border-left: 2px solid transparent;
+}
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+  background: var(--cr-sel-soft);
+  border-left-color: var(--cr-crimson);
+  color: var(--cr-ink);
+}
+.typora-quick-open-item-path {
+  color: var(--cr-iron);
+}
+.typora-search-spinner > div {
+  background-color: var(--cr-crimson);
+}
+.auto-suggest-container li.active,
+.auto-suggest-container li:hover {
+  background: var(--cr-sel-soft);
+  color: var(--cr-ink);
+}
+
+/* ───────────────────────── Menus, popovers, modals ───────────────────────── */
+
+.dropdown-menu,
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info,
+#toc-dropmenu,
+.popover,
+.ty-editor-toolbar {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  border-radius: 6px;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .6);
+  color: var(--cr-ink);
+}
+.dropdown-menu > li > a,
+.context-menu > li > a {
+  color: var(--cr-ink);
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a,
+.context-menu > li > a:hover,
+.context-menu > li > a:focus,
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+  background: var(--cr-sel-soft);
+  color: var(--cr-ink);
+}
+.dropdown-menu .divider,
+.context-menu.dropdown-menu .divider,
+#toc-dropmenu .divider {
+  background: var(--cr-border);
+  opacity: 1;
+}
+.ty-editor-toolbar {
+  --text-color: var(--cr-ink);
+  filter: none;
+}
+.popover.bottom > .arrow::after {
+  border-bottom-color: var(--cr-crypt);
+}
+.popover.top > .arrow::after {
+  border-top-color: var(--cr-crypt);
+}
+.popover-title {
+  background: transparent;
+  border-bottom: 1px solid var(--cr-border);
+}
+
+#ty-tooltip,
+.md-hover-tip .md-arrow::after,
+div.code-tooltip {
+  background: var(--cr-void);
+  color: var(--cr-ink);
+}
+
+.native-window #md-notification,
+#md-notification {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  color: var(--cr-ink);
+}
+
+.modal-content {
+  background: var(--cr-ground);
+  border: 1px solid var(--cr-border);
+  border-radius: 8px;
+  box-shadow: 0 40px 100px -30px var(--cr-glow-strong), 0 30px 60px -30px rgba(0, 0, 0, .8);
+  color: var(--cr-ink);
+}
+.modal-header,
+.modal-footer {
+  border-color: var(--cr-border);
+}
+.modal-title {
+  font-family: var(--cr-f-title);
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-size: 1.15em;
+}
+.modal-backdrop,
+.modal-backdrop.in {
+  background: rgba(7, 8, 9, .6);
+  opacity: 1;
+  backdrop-filter: blur(4px);
+}
+.modal-content input,
+.modal-content textarea,
+.modal-content select,
+.form-control {
+  background: var(--cr-crypt);
+  color: var(--cr-ink);
+  border: 1px solid var(--cr-gutter);
+  border-radius: 4px;
+  box-shadow: none;
+}
+.modal-content input:focus,
+.form-control:focus {
+  border-color: var(--cr-crimson);
+  box-shadow: 0 0 0 2px var(--cr-sel-soft);
+}
+.modal-content .input-group-addon,
+.form-inline .input-group .input-group-addon {
+  background: var(--cr-crypt);
+  border-color: var(--cr-gutter);
+  color: var(--cr-ink);
+}
+
+/* buttons — the faceted seal */
+.btn {
+  border-radius: 4px;
+}
+.btn-default,
+.btn .btn-default {
+  background: transparent;
+  color: var(--cr-ink);
+  border: 1px solid var(--cr-border-2);
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background: var(--cr-hover);
+  color: var(--cr-tallow);
+  border-color: var(--cr-tallow-line);
+}
+.btn-primary,
+.modal-content .btn-primary {
+  background: linear-gradient(180deg, #d4334c, #9a1429);
+  border: 1px solid var(--cr-crimson-deep);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  filter: brightness(1.12);
+  color: #fff;
+}
+.modal-footer .btn-default,
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+  border: 1px solid var(--cr-border-2);
+}
+.modal-footer .btn-primary {
+  border-color: var(--cr-crimson-deep);
+}
+
+/* ───────────────────────── Megamenu (File menu on Windows/Linux) ───────────────────────── */
+
+.megamenu-content,
+.megamenu-opened header {
+  background:
+    radial-gradient(900px 500px at 60% -10%, var(--cr-glow), transparent 70%),
+    var(--cr-ground);
+}
+.megamenu-menu {
+  background: var(--cr-crypt);
+  border-right: 1px solid var(--cr-border);
+  box-shadow: none;
+}
+.megamenu-menu-header {
+  border-bottom: 1px solid var(--cr-border);
+}
+.megamenu-menu-list li a,
+.megamenu-menu-header,
+#megamenu-back-btn {
+  color: var(--cr-ink);
+}
+.megamenu-menu-list li a:hover {
+  background: var(--cr-hover);
+  color: var(--cr-ink);
+}
+.megamenu-menu-list li a.active {
+  background: var(--cr-sel-soft);
+  color: var(--cr-ink);
+  border-left: 2px solid var(--cr-crimson);
+}
+.megamenu-menu-panel h1,
+.megamenu-menu-panel h2 {
+  font-family: var(--cr-f-title);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cr-ink);
+}
+.megamenu-menu-panel h1 {
+  color: var(--cr-title);
+}
+.megamenu-menu-panel,
+.long-btn {
+  color: var(--cr-ink);
+}
+.long-btn:hover {
+  background: var(--cr-hover);
+}
+.megamenu-menu-panel input[type="text"] {
+  background: transparent;
+  color: var(--cr-ink);
+  border: 0;
+  border-bottom: 1px solid var(--cr-gutter);
+}
+.megamenu-menu-panel .btn {
+  background: transparent;
+  border: 1px solid var(--cr-border-2);
+  color: var(--cr-ink);
+}
+.megamenu-menu-panel .dropdown-menu > li > a {
+  background: var(--cr-crypt);
+  color: var(--cr-ink);
+}
+.megamenu-menu-panel table td:nth-child(1) {
+  color: var(--cr-ink);
+  font-weight: 600;
+}
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+  color: var(--cr-blood);
+}
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+  color: inherit;
+}
+#recent-file-panel tbody tr:nth-child(2n-1) {
+  background: transparent !important;
+}
+#recent-file-panel-action-btn {
+  background: transparent;
+  border: 1px solid var(--cr-border-2);
+}
+#recent-file-panel tbody tr:hover {
+  background: var(--cr-hover);
+}
+
+/* ───────────────────────── Window chrome, footer ───────────────────────── */
+
+#top-titlebar {
+  background: var(--cr-crypt);
+  border-bottom: 1px solid var(--cr-border);
+}
+#top-titlebar,
+#top-titlebar * {
+  color: var(--cr-iron);
+}
+#top-titlebar .toolbar-icon:hover {
+  background: var(--cr-hover);
+  color: var(--cr-ink);
+}
+#w-close:hover,
+#top-titlebar #w-close:hover {
+  background: var(--cr-crimson);
+}
+#w-close:hover *,
+#top-titlebar #w-close:hover * {
+  color: #fff;
+}
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+  background: var(--cr-hover);
+}
+#w-unpin {
+  background: var(--cr-crimson);
+}
+
+footer,
+footer.ty-footer {
+  color: var(--cr-iron);
+  border-color: var(--cr-border);
+  background: transparent;
+}
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count,
+#toggle-sourceview-btn:hover {
+  background: var(--cr-hover);
+  color: var(--cr-ink);
+}
+#file-info-file-path .file-info-field-value:hover {
+  background: var(--cr-hover);
+  color: var(--cr-ink);
+}
+
+/* ───────────────────────── Preferences ───────────────────────── */
+
+.ty-preferences {
+  background: var(--cr-ground);
+  color: var(--cr-ink);
+}
+.ty-preferences .window-header,
+.ty-preferences .sidebar,
+.ty-preferences .nav-group {
+  background: var(--cr-crypt);
+}
+.ty-preferences .nav-group-item {
+  color: var(--cr-ink);
+}
+.ty-preferences .nav-group-item.active,
+.export-item.active,
+.export-items-list-control,
+.export-detail {
+  background: var(--cr-sel-soft);
+  color: var(--cr-ink);
+}
+.nav-group-item:active {
+  background: var(--cr-sel) !important;
+}
+.ty-preferences .btn-default {
+  background: transparent;
+}
+.ty-preferences .btn-default:hover {
+  background: var(--cr-hover);
+}
+.ty-preferences select,
+.ty-preferences input[type="text"],
+.ty-preferences input[type="number"] {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-gutter);
+  color: var(--cr-ink);
+}
+.ty-preferences input[type="search"] {
+  background: var(--cr-crypt);
+  border: 1px solid var(--cr-border);
+  border-radius: 6px;
+  color: var(--cr-ink);
+  line-height: 22px;
+}
+.ty-preferences input[type="search"]:focus {
+  border-color: var(--cr-crimson);
+  box-shadow: none;
+}
+.ty-preferences h1,
+.ty-preferences .ty-preferences-title {
+  font-family: var(--cr-f-title);
+  letter-spacing: .08em;
+}
+
+/* ───────────────────────── Misc ───────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--cr-blood);
+  outline-offset: 2px;
+}
+
+#write .md-image .md-image-btn,
+.md-image-input-src-btn {
+  color: var(--cr-iron);
+}
+
+.md-html-inline .md-plain,
+.md-html-inline .md-meta {
+  color: var(--cr-sealwax);
+}
+
+.md-image-src-span,
+.md-link .md-meta,
+.md-inline-math .md-meta,
+.md-emoji .md-meta {
+  color: var(--cr-gutter);
+}
+
+/* ───────────────────────── Export / print ───────────────────────── */
+
+@media print {
+  html,
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body.typora-export {
+    background: var(--cr-ground);
+  }
+  #write {
+    padding: 0 !important;
+    max-width: none;
+  }
+  #write pre.md-fences,
+  #write table,
+  #write blockquote,
+  #write img {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+  #write h1,
+  #write h2,
+  #write h3 {
+    break-after: avoid;
+  }
+}

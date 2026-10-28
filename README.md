@@ -5,7 +5,7 @@
 *Ex umbra in lucem*
 
 A gothic, arcane colour scheme in two variants, **Obsidian** and **Ivory**,
-for Sublime Text, VS Code, Hugo (Chroma) and the fish shell.
+for editors, shells and the web.
 Every colour is born from an object: blood, bone, stone, amber, verdigris.
 
 **[vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/)**
@@ -68,13 +68,8 @@ The shape of the letter tells you the role before the colour does.
 
 ## Ports
 
-| Port | Files | |
-|---|---|---|
-| [Sublime Text](ports/sublime) | `Cremisi Obsidian.sublime-color-scheme`, `Cremisi Ivory.sublime-color-scheme` | [install](ports/sublime#install) |
-| [Hugo (Chroma)](ports/hugo) | `cremisi-syntax.css` | [install](ports/hugo#install) |
-| [VS Code](ports/vscode) | `Cremisi Obsidian`, `Cremisi Ivory` (extension) | [Marketplace](https://marketplace.visualstudio.com/items?itemName=vari-sh.cremisi-theme) · [install](ports/vscode#install) |
-| [fish](ports/fish) | `cremisi-obsidian.theme`, `cremisi-ivory.theme` | [install](ports/fish#install) |
-| [CSS scales](ports/css) | `cremisi-scales.css` | [usage](ports/css#usage) |
+Every port lives in its own folder under [`ports/`](ports), with a README that explains how to install it
+and what it can and cannot reproduce. Start from there.
 
 ## Two scales
 
@@ -109,7 +104,7 @@ ports/         one folder per port, each with its own README
 assets/        previews
 ```
 
-Every port is generated from `palette.yaml`; the live page at [vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/) is built from the same data.
+Every port draws its colours from `palette.yaml`; the live page at [vari-sh.github.io/cremisi](https://vari-sh.github.io/cremisi/) is built from the same data.
 
 ## License
 

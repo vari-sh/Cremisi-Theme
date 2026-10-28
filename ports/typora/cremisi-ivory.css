@@ -1,0 +1,63 @@
+/*
+ * Cremisi Ivory — Typora theme
+ * The same stone, read from the opposite end: vellum ground, scriptorium ink, the same crimson.
+ * Based on Cremisi by vari.sh — https://vari-sh.github.io/cremisi/
+ */
+
+@import "cremisi/cremisi-base.css";
+
+:root {
+  color-scheme: light;
+  --mermaid-theme: default;
+
+  /* stone */
+  --cr-void: #17171c;
+  --cr-crypt: #e9e1d1;
+  --cr-ground: #f4eee2;
+  --cr-border: #cfc6b8;
+  --cr-border-2: #b3aa9a;
+  --cr-gutter: #b3aa9a;
+
+  /* ink */
+  --cr-ink: #2b2733;
+  --cr-ink-dim: #4e4a50;
+  --cr-side-fg: #17171c;
+  --cr-iron: #64606c;
+  --cr-incense: #8a7f8c;
+
+  /* blood */
+  --cr-crimson: #c42740;
+  --cr-crimson-deep: #7e1023;
+  --cr-blood: #bb1f39;
+  --cr-title: #a11730;
+  --cr-title-shadow: none;
+  --cr-link: #a11730;
+  --cr-link-line: rgba(161, 23, 48, .3);
+
+  /* materials */
+  --cr-lapis: #2d5c9c;
+  --cr-tallow: #7e6410;
+  --cr-tallow-line: rgba(126, 100, 16, .4);
+  --cr-amber: #9f5c12;
+  --cr-sealwax: #a24d20;
+  --cr-malachite: #2f7a4e;
+  --cr-verdigris: #1a706d;
+  --cr-amethyst: #7e3a9e;
+  --cr-wine: #8a3f64;
+  --cr-petal: #a8465f;
+
+  /* interface */
+  --cr-sel: rgba(196, 39, 64, .24);
+  --cr-sel-fg: #2b2733;
+  --cr-sel-soft: rgba(196, 39, 64, .12);
+  --cr-sel-faint: rgba(196, 39, 64, .05);
+  --cr-hover: rgba(43, 39, 51, .06);
+  --cr-zebra: rgba(43, 39, 51, .025);
+  --cr-mark: rgba(207, 145, 66, .32);
+  --cr-mark-fg: #2b2733;
+  --cr-glow: rgba(196, 39, 64, .07);
+  --cr-glow-strong: rgba(196, 39, 64, .28);
+  --cr-scroll: rgba(43, 39, 51, .16);
+  --cr-scroll-hover: rgba(43, 39, 51, .28);
+  --cr-code-shadow: none;
+}
