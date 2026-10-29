@@ -12,6 +12,8 @@ Every colour is born from an object: blood, bone, stone, amber, verdigris.
 
 For VS Code: **[Cremisi on the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vari-sh.cremisi-theme)**
 
+For Sublime Text: **[Cremisi Color Scheme on Package Control](https://packagecontrol.io/packages/Cremisi%20Color%20Scheme)**
+
 </div>
 
 <p align="center">
