@@ -1,0 +1,7 @@
+id = "cremisi-theme"
+name = "Cremisi"
+version = "0.1.0"
+schema_version = 1
+authors = ["vari.sh"]
+description = "A gothic, arcane colour scheme in two variants, Obsidian and Ivory."
+repository = "https://github.com/vari-sh/Cremisi-Theme"
